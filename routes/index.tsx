@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <>
       <main>
-        <h1 className="text-2xl text-center color-white">Em Construção, volte daqui alguns dias...</h1>
+        <h1 className="text-2xl text-center text-white">Em Construção, volte daqui alguns dias...</h1>
       </main>
     </>
   );
