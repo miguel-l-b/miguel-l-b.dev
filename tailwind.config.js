@@ -6,11 +6,14 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        "robotoM": ["Roboto", "sans-serif"],
+        "roboto": ['Roboto Mono', "monospace"],
+        "jura": ['Jura', 'sans-serif'],
+
       },
       colors: {
         "black-dark": "#161818",
         "black": "#262727",
+        "black-light": "#282929",
         "gray-dark": "#4A5560",
         "gray": "#AAB0BE",
         "gray-light": "#D0DFDE",
