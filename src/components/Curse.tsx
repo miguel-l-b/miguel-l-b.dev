@@ -7,11 +7,7 @@ export default function Curse(): JSX.Element {
 
   useEffect(() => {
     const checkTouchDevice = (): void => {
-      setIsTouchDevice(
-        "ontouchstart" in window ||
-          navigator.maxTouchPoints > 0 ||
-          navigator.maxTouchPoints > 0,
-      )
+      setIsTouchDevice("ontouchstart" in window || navigator.maxTouchPoints > 0)
     }
 
     // Adiciona um listener para o evento 'touchstart'
@@ -23,7 +19,7 @@ export default function Curse(): JSX.Element {
     }
   }, [])
 
-  window.addEventListener("mouseup", () => {
+  window.addEventListener("click", () => {
     document.getElementById("cursor-dot")!.animate(
       {
         width: "5rem",
@@ -31,7 +27,7 @@ export default function Curse(): JSX.Element {
         transform: "translate(-1.625rem, -1.625rem)",
         background: "#E6EEEF50",
       },
-      { duration: 200, fill: "both" },
+      { duration: 100, fill: "both" },
     )
 
     setTimeout(() => {
@@ -42,9 +38,9 @@ export default function Curse(): JSX.Element {
           background: "none",
           transform: "translate(0.025rem, 0.025rem)",
         },
-        { duration: 500, fill: "both" },
+        { duration: 580, fill: "both" },
       )
-    }, 1500)
+    }, 500)
   })
   window.addEventListener("mousemove", (e) => {
     document.getElementById("cursor-outline")!.style.left =
@@ -65,7 +61,7 @@ export default function Curse(): JSX.Element {
     <>
       <div
         id="cursor-dot"
-        className="fixed top-[-7rem] left-[-7rem] z-[1] w-7 h-7 pointer-events-none border-inherit border-2 rounded-full"
+        className="fixed top-[-7rem] left-[-7rem] z-[1] w-7 h-7 pointer-events-none border-white border-2 rounded-full"
       ></div>
       <div
         id="cursor-outline"
