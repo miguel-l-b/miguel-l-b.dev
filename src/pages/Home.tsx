@@ -10,6 +10,7 @@ export default function Home(): JSX.Element {
           src="logo-ellipse.svg"
           alt="logo tipo"
         />
+        <h1 className="text-4xl mt-10">Miguel Lopes Braido</h1>
         <br />
         <h1>🧑‍💻 Desenvolvendo aplicações Web e Mobile desde 2020</h1>
         <h1>

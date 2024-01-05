@@ -1,6 +1,51 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 
+import { useEffect, useState } from "react"
+
 export default function Curse(): JSX.Element {
+  const [isTouchDevice, setIsTouchDevice] = useState(false)
+
+  useEffect(() => {
+    const checkTouchDevice = (): void => {
+      setIsTouchDevice(
+        "ontouchstart" in window ||
+          navigator.maxTouchPoints > 0 ||
+          navigator.maxTouchPoints > 0,
+      )
+    }
+
+    // Adiciona um listener para o evento 'touchstart'
+    window.addEventListener("touchstart", checkTouchDevice)
+
+    // Remove o listener quando o componente é desmontado
+    return () => {
+      window.removeEventListener("touchstart", checkTouchDevice)
+    }
+  }, [])
+
+  window.addEventListener("mouseup", () => {
+    document.getElementById("cursor-dot")!.animate(
+      {
+        width: "5rem",
+        height: "5rem",
+        transform: "translate(-1.625rem, -1.625rem)",
+        background: "#E6EEEF50",
+      },
+      { duration: 200, fill: "both" },
+    )
+
+    setTimeout(() => {
+      document.getElementById("cursor-dot")!.animate(
+        {
+          width: "1.75rem",
+          height: "1.75rem",
+          background: "none",
+          transform: "translate(0.025rem, 0.025rem)",
+        },
+        { duration: 500, fill: "both" },
+      )
+    }, 1500)
+  })
   window.addEventListener("mousemove", (e) => {
     document.getElementById("cursor-outline")!.style.left =
       `calc(${e.clientX}px - 0.2rem)`
@@ -14,6 +59,8 @@ export default function Curse(): JSX.Element {
       { duration: 500, fill: "both" },
     )
   })
+
+  if (isTouchDevice) return <></>
   return (
     <>
       <div
@@ -22,7 +69,7 @@ export default function Curse(): JSX.Element {
       ></div>
       <div
         id="cursor-outline"
-        className="fixed z-[1] pointer-events-none w-2 h-2 bg-white rounded-full"
+        className="fixed z-[1] pointer-events-none w-2 h-2 backdrop-invert bg-[#E6EEEF50] rounded-full"
       ></div>
     </>
   )
