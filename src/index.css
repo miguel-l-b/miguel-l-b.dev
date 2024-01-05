@@ -21,5 +21,30 @@ h1 {
 }
 
 a.animated-link {
-  @apply text-blue-light w-0 border-b-blue-dark border-b-4;
+  position: relative;
+  color: #fff;
+  text-decoration: none;
+  @apply text-blue-light w-0;
+}
+
+a.animated-link:before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 3px;
+  bottom: -5px;
+  left: 0;
+  visibility: hidden;
+  -webkit-transform: scaleX(0);
+  transform: scaleX(0);
+  -webkit-transition: all 0.3s ease-in-out 0s;
+  transition: all 0.3s ease-in-out 0s;
+
+  @apply bg-blue-dark;
+}
+
+a.animated-link:hover:before {
+  visibility: visible;
+  -webkit-transform: scaleX(1);
+  transform: scaleX(1);
 }
