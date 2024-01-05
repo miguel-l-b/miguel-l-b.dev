@@ -1,9 +1,11 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 
-export default function Course(): JSX.Element {
+export default function Curse(): JSX.Element {
   window.addEventListener("mousemove", (e) => {
-    document.getElementById("cursor-outline")!.style.transform =
-      `translate(calc(${e.clientX}px - 0.2rem), calc(${e.clientY}px - 0.2rem))`
+    document.getElementById("cursor-outline")!.style.left =
+      `calc(${e.clientX}px - 0.2rem)`
+    document.getElementById("cursor-outline")!.style.top =
+      `calc(${e.clientY}px - 0.2rem)`
     document.getElementById("cursor-dot")!.animate(
       {
         left: `calc(${e.clientX}px - 0.8rem)`,

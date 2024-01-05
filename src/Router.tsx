@@ -1,14 +1,14 @@
 import React from "react"
 import { BrowserRouter, Route, Routes } from "react-router-dom"
 
-import Course from "./components/Course"
+import Curse from "./components/Curse"
 import Books from "./pages/Books"
 import Home from "./pages/Home"
 
 export default function Router(): JSX.Element {
   return (
     <>
-      <Course />
+      <Curse />
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
