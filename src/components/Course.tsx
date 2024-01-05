@@ -16,11 +16,11 @@ export default function Course(): JSX.Element {
     <>
       <div
         id="cursor-dot"
-        className="fixed t-0 l-0 z-[1] w-7 h-7 pointer-events-none border-inherit border-2 rounded-full"
+        className="fixed top-[-7rem] left-[-7rem] z-[1] w-7 h-7 pointer-events-none border-inherit border-2 rounded-full"
       ></div>
       <div
         id="cursor-outline"
-        className="fixed t-0 l-0 z-[1] pointer-events-none w-2 h-2 bg-white rounded-full"
+        className="fixed z-[1] pointer-events-none w-2 h-2 bg-white rounded-full"
       ></div>
     </>
   )
