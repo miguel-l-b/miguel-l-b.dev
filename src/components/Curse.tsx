@@ -10,10 +10,8 @@ export default function Curse(): JSX.Element {
       setIsTouchDevice("ontouchstart" in window || navigator.maxTouchPoints > 0)
     }
 
-    // Adiciona um listener para o evento 'touchstart'
     window.addEventListener("touchstart", checkTouchDevice)
 
-    // Remove o listener quando o componente é desmontado
     return () => {
       window.removeEventListener("touchstart", checkTouchDevice)
     }
@@ -65,7 +63,7 @@ export default function Curse(): JSX.Element {
       ></div>
       <div
         id="cursor-outline"
-        className="fixed z-[1] pointer-events-none w-2 h-2 backdrop-invert bg-[#E6EEEF50] rounded-full"
+        className="fixed z-[1] top-[-7rem] left-[-7rem] pointer-events-none w-2 h-2 backdrop-invert bg-[#E6EEEF50] rounded-full"
       ></div>
     </>
   )
