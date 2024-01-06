@@ -1,13 +1,13 @@
-// import Header from "../components/Header"
+import Header from "../components/Header"
 
 export default function Home(): JSX.Element {
   return (
     <>
-      {/* <Header path="home" /> */}
+      <Header path="home" />
       <main className="text-center mt-20">
         <img
           className="w-52 h-52 m-auto"
-          src="logo-ellipse.svg"
+          src="/logo-ellipse.svg"
           alt="logo tipo"
         />
         <br />
