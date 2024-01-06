@@ -20,14 +20,14 @@ h1 {
   @apply text-xl font-medium;
 }
 
-a.animated-link {
+.animated-link {
   position: relative;
   color: #fff;
   text-decoration: none;
   @apply text-blue-light w-0;
 }
 
-a.animated-link:before {
+.animated-link:before {
   content: "";
   position: absolute;
   width: 100%;
@@ -43,7 +43,7 @@ a.animated-link:before {
   @apply bg-blue-dark rounded-full;
 }
 
-a.animated-link:hover:before {
+.animated-link:hover:before {
   visibility: visible;
   -webkit-transform: scaleX(1);
   transform: scaleX(1);
