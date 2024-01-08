@@ -22,8 +22,9 @@ export default function Curse(): JSX.Element {
       {
         width: "5rem",
         height: "5rem",
-        transform: "translate(-1.625rem, -1.625rem)",
         background: "#E6EEEF50",
+        borderRadius: "100%",
+        transform: "translate(-1.625rem, -1.625rem)",
       },
       { duration: 100, fill: "both" },
     )
@@ -34,11 +35,12 @@ export default function Curse(): JSX.Element {
           width: "1.75rem",
           height: "1.75rem",
           background: "none",
+          borderRadius: "0.6rem",
           transform: "translate(0.025rem, 0.025rem)",
         },
         { duration: 580, fill: "both" },
       )
-    }, 500)
+    }, 120)
   })
   window.addEventListener("mousemove", (e) => {
     document.getElementById("cursor-outline")!.style.left =
@@ -50,7 +52,7 @@ export default function Curse(): JSX.Element {
         left: `calc(${e.clientX}px - 0.8rem)`,
         top: `calc(${e.clientY}px - 0.8rem)`,
       },
-      { duration: 500, fill: "both" },
+      { duration: 100, fill: "both" },
     )
   })
 
@@ -59,7 +61,7 @@ export default function Curse(): JSX.Element {
     <>
       <div
         id="cursor-dot"
-        className="fixed top-[-7rem] left-[-7rem] z-[1] w-7 h-7 pointer-events-none border-white border-2 rounded-full"
+        className="fixed top-[-7rem] left-[-7rem] z-[1] w-7 h-7 pointer-events-none border-white border-2 rounded-[0.6rem]"
       ></div>
       <div
         id="cursor-outline"
