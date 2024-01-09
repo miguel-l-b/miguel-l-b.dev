@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import { Inter } from 'next/font/google'
 import Head from 'next/head'
+import Header from '@/components/Header'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -11,6 +12,7 @@ export default function Home() {
       <title>Miguel L B | Home</title>
       <meta name="description" content="🧑‍💻 Desenvolvendo aplicações Web e Mobile desde 2020" />
     </Head>
+    <Header path="/" />
     <main className="text-center mt-20">
       <Image
         className="w-52 h-52 m-auto"

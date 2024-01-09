@@ -13,6 +13,7 @@ export default function Books(): JSX.Element {
           content="📚 Livros que me ajudaram a ser um desenvolvedor melhor"
         />
       </Head>
+      <Header path="/books" />
       <main>
         <Book
           img="/books/codigo_limpo.jpg"
