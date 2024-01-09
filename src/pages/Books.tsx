@@ -16,7 +16,7 @@ export default function Books(): JSX.Element {
       <Header path="/books" />
       <main>
         <Book
-          img="/books/codigo_limpo.jpg"
+          img="/img/books/codigo_limpo.jpg"
           name="Código Limpo"
           why="é uma leitura essencial para programadores em busca de aprimoramento, pois destaca a importância da legibilidade, sustentabilidade e redução de complexidade no código. Ao seguir as práticas e princípios apresentados por Robert C. Martin, os desenvolvedores podem melhorar a colaboração, facilitar a manutenção do software a longo prazo e desenvolver habilidades cruciais para o desenvolvimento profissional em um ambiente ágil."
           buy={[

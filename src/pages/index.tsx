@@ -16,7 +16,7 @@ export default function Home() {
     <main className="text-center mt-20">
       <Image
         className="w-52 h-52 m-auto"
-        src="/logo-ellipse.svg"
+        src="/img/logo-ellipse.svg"
         width={208}
         height={208}
         alt="logo tipo"

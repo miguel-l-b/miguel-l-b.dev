@@ -41,7 +41,7 @@ export default function Header(props: HeaderProps): JSX.Element {
         <Link href="/">
           <Image
             className="w-24 h-24 fixed left-[5vw] top-[1.5rem]"
-            src="/logo-polygon.svg"
+            src="/img/logo-polygon.svg"
             width={96}
             height={96}
             alt="logo tipo"
