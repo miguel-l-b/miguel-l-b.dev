@@ -1,3 +1,5 @@
+import Image from 'next/image'
+
 interface BookProps {
   img: string
   name: string
@@ -16,8 +18,10 @@ export default function Book(props: BookProps): JSX.Element {
   ]
   return (
     <div className="m-auto w-[60vw] flex">
-      <img
+      <Image
         className="w-[20rem] h-[13.5rem] rounded-xl"
+        width={320}
+        height={216}
         src={props.img}
         alt={`capa do livro ${props.name}`}
       />
@@ -29,13 +33,13 @@ export default function Book(props: BookProps): JSX.Element {
           <h3 className="text-lg">Links de onde Comprar:</h3>
           {physical.map((item, index) => (
             <a href={item.url} target="_blank" rel="noreferrer" key={index}>
-              <img src={item.logo} className="w-6" alt="logo da empresa ..." />
+              <Image src={item.logo} className="w-6" width={24} height={24} alt="logo da empresa ..." />
             </a>
           ))}
           {electronic.length > 0 && <span>eBook:</span>}
           {electronic.map((item, index) => (
             <a href={item.url} target="_blank" rel="noreferrer" key={index}>
-              <img src={item.logo} className="w-6" alt="logo da empresa ..." />
+              <Image src={item.logo} className="w-6" width={24} height={24} alt="logo da empresa ..." />
             </a>
           ))}
         </div>

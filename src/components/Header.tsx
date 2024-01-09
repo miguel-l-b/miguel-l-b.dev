@@ -1,7 +1,8 @@
-import { Link } from "react-router-dom"
+import Link from "next/link"
+import Image from 'next/image'
 
 export interface HeaderProps {
-  path?: "home" | "books" | "posts" | "projects"
+  path?: string
 }
 
 interface HeaderLinkProps {
@@ -18,7 +19,7 @@ export function HeaderLink(props: HeaderLinkProps): JSX.Element {
       hover:to-[#ffffff00] hover:from-50% hover:bg-clip-text hover:text-transparent ${
         props.clicked && "bg-gradient-to-tr to-[#35423E] from-[#3D3A47]"
       }`}
-      to={props.path}
+      href={props.path}
     >
       <h2
         className={`text-white font-jura text-2xl font-medium ${
@@ -36,11 +37,13 @@ export default function Header(props: HeaderProps): JSX.Element {
   console.log(props.path)
   return (
     <nav className="flex p-10 items-center justify-center">
-      {props.path !== "home" ? (
-        <Link to="/">
-          <img
+      {props.path !== "/" ? (
+        <Link href="/">
+          <Image
             className="w-24 h-24 fixed left-[5vw] top-[1.5rem]"
-            src="/logo-polygon.svg"
+            src="logo-polygon.svg"
+            width={96}
+            height={96}
             alt="logo tipo"
           />
         </Link>
@@ -48,7 +51,7 @@ export default function Header(props: HeaderProps): JSX.Element {
         <div className="w-24 h-24 fixed left-[10rem] top-[1.5rem]"></div>
       )}
       <ul className="flex gap-20 justify-center bg-black-light w-[60vw] h-14 rounded-full shadow-sm shadow-black-dark">
-        <HeaderLink path="/books" clicked={props.path === "books"}>
+        <HeaderLink path="/books" clicked={props.path === "/books"}>
           Livros
         </HeaderLink>
         {/* <HeaderLink path="/projects" clicked={props.path === "projects"}>

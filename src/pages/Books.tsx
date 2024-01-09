@@ -1,10 +1,18 @@
-import Book from "../components/Book"
-import Header from "../components/Header"
+import Head from 'next/head'
+
+import Book from "@/components/Book"
+import Header from "@/components/Header"
 
 export default function Books(): JSX.Element {
   return (
     <>
-      <Header path="books" />
+      <Head>
+        <title>Miguel L B | Livros</title>
+        <meta
+          name="description"
+          content="📚 Livros que me ajudaram a ser um desenvolvedor melhor"
+        />
+      </Head>
       <main>
         <Book
           img="/books/codigo_limpo.jpg"
