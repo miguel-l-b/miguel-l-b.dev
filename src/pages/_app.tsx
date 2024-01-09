@@ -1,13 +1,15 @@
 import type { AppProps } from 'next/app'
 import { usePathname } from 'next/navigation'
 
+import Head from 'next/head'
+import { SpeedInsights } from "@vercel/speed-insights/next"
+
 import Curse from '@/components/Curse'
 import '@/styles/globals.css'
-import Head from 'next/head'
-
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
+      <SpeedInsights />
       <Head>
         <meta charSet="utf-8" />
         <link rel="icon" href="logo.png" />
