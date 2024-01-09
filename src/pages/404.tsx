@@ -8,9 +8,9 @@ export default function ErrorNotFound(): JSX.Element {
   return (
     <>
       <Head>
-        <title>404 | {current}</title>
+        <title>Miguel L B | 404</title>
       </Head>
-      <main className="flex flex-col h-dvh gap-28 text-center justify-center items-center">
+      <main className="flex flex-col gap-28 text-center justify-center items-center">
         <h1 className="text-5xl font-bold font-jura">404</h1>
         <h1 className="text-2xl">
           Página não encontrada {current}, volte para a{" "}

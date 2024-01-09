@@ -12,7 +12,6 @@ export default function Document() {
           name="description"
           content="Miguel L B - Desenvolvedor Web Full Stack"
         />
-        <title>Miguel L B</title>
       </Head>
       <body>
         <Main />
