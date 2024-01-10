@@ -1,11 +1,26 @@
 import Image from 'next/image'
-import { Inter } from 'next/font/google'
 import Head from 'next/head'
 import Header from '@/components/Header'
+import { useEffect, useState } from 'react'
 
-const inter = Inter({ subsets: ['latin'] })
+const texts = [
+  {text: "Miguel Lopes B.", style: "bg-green text-xl"},
+  {text: "Desenvolvedor de Software", style: "bg-blue text-xl"},
+  {text: "Desenvolvedor FullStack", style: "bg-yellow text-xl"},
+]
 
 export default function Home() {
+  const [index, setIndex] = useState(0)
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if(index === 2) setIndex(0)
+      else
+      setIndex((index + 1 % 3))
+    }, 2500)
+    return () => clearInterval(interval)
+  }, [index])
+
   return (
     <>
     <Head>
@@ -21,6 +36,9 @@ export default function Home() {
         height={208}
         alt="logo tipo"
       />
+      <br />
+      <h1>Olá 🖖, eu sou <span className={`pl-3 pr-3 rounded-md transition-all ease-in duration-500 text-black ${texts[index]?.style}`}>{texts[index]?.text}</span></h1>
+      <br />
       <br />
       <h1>🧑‍💻 Desenvolvendo aplicações Web e Mobile desde 2020</h1>
       <h1>
