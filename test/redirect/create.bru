@@ -1,0 +1,18 @@
+meta {
+  name: create
+  type: http
+  seq: 3
+}
+
+post {
+  url: http://localhost:3000/api/redirects/create
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "name": "A-codigo-limpo",
+    "url": "https://www.amazon.com.br/C%C3%B3digo-limpo-Robert-C-Martin/dp/8576082675?crid=2HXZ2TVKZQDWJ&keywords=c%C3%B3digo+limpo&qid=1704721955&sprefix=c%C3%B3digo+limpo%2Caps%2C196&sr=8-60&ufe=app_do%3Aamzn1.fos.6d798eae-cadf-45de-946a-f477d47705b9&linkCode=ll1&tag=miguellb-20&linkId=e3b4a4ecb76fcbfc1364477781033861&language=pt_BR&ref_=as_li_ss_tl"
+  }
+}
