@@ -3,6 +3,10 @@ import { NextApiRequest, NextApiResponse } from "next"
 
 export default async function POST(req: NextApiRequest, res: NextApiResponse) {
   const { url, name } = req.body
+  const { authorization } = req.headers
+
+  if(authorization !== process.env.ADMIN_SECRET)
+    return res.status(401).json({ error: "Unauthorized", message: "You are not authorized to perform this action." })
 
   if(
     (url === undefined || typeof url !== "string" || url.length === 0) ||
