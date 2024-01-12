@@ -11,6 +11,7 @@ const config: Config = {
       fontFamily: {
         "roboto": ['Roboto Mono', "monospace"],
         "jura": ['Jura', 'sans-serif'],
+        "orbitron": ['Orbitron', 'sans-serif'],
 
       },
       colors: {
