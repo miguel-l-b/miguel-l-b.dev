@@ -17,9 +17,9 @@ export default function Book(props: BookProps): JSX.Element {
     props.buy.filter((e) => e.isElectronic),
   ]
   return (
-    <div className="m-auto w-[60vw] flex">
+    <div className="m-auto w-[60dvw] flex flex-col items-center gap-10 xl:gap-0 xl:flex-row">
       <Image
-        className="w-[20rem] h-[13.5rem] rounded-xl"
+        className="w-[15rem] xl:w-auto xl:h-[20rem] rounded-xl"
         width={320}
         height={216}
         src={props.img}
