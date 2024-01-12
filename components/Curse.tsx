@@ -59,11 +59,11 @@ export default function Curse(): JSX.Element {
     <>
       <div
         id="cursor-dot"
-        className="fixed top-[-7rem] left-[-7rem] z-[1] w-7 h-7 pointer-events-none border-white border-2 rounded-[0.6rem]"
+        className="fixed top-[-7rem] left-[-7rem] z-[999] w-7 h-7 pointer-events-none border-white border-2 rounded-[0.6rem]"
       ></div>
       <div
         id="cursor-outline"
-        className="fixed z-[1] top-[-7rem] left-[-7rem] pointer-events-none w-2 h-2 backdrop-invert bg-[#E6EEEF50] rounded-full"
+        className="fixed z-[999] top-[-7rem] left-[-7rem] pointer-events-none w-2 h-2 backdrop-invert bg-[#E6EEEF50] rounded-full"
       ></div>
     </>
   )
