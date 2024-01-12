@@ -1,11 +1,17 @@
 meta {
   name: get
   type: http
-  seq: 1
+  seq: 2
 }
 
 get {
   url: http://localhost:3000/api/redirects/flcfl055re6
   body: none
   auth: none
+}
+
+assert {
+  res.status: eq 200
+  res.body.id: eq flcfl055re6
+  res.body.name: eq A-codigo-limpo
 }
