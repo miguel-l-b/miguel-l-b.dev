@@ -59,9 +59,9 @@ export default function Header(props: HeaderProps): JSX.Element {
         <HeaderLink path="/books" clicked={props.path === "/books"}>
           Livros
         </HeaderLink>
-        <HeaderLink path="/projects" clicked={props.path === "/projects"}>
+        {/* <HeaderLink path="/projects" clicked={props.path === "/projects"}>
           Projetos
-        </HeaderLink>
+        </HeaderLink> */}
 
 
 
@@ -88,9 +88,9 @@ export default function Header(props: HeaderProps): JSX.Element {
         <HeaderLink path="/books" clicked={props.path === "/books"}>
           Livros
         </HeaderLink>
-        <HeaderLink path="/projects" clicked={props.path === "/projects"}>
+        {/* <HeaderLink path="/projects" clicked={props.path === "/projects"}>
           Projetos
-        </HeaderLink>
+        </HeaderLink> */}
       </ul>
     </nav>
     <div className="w-full h-20 md:hidden" />
