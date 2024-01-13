@@ -33,10 +33,12 @@ async function deleteHandle(req: NextApiRequest, res: NextApiResponse) {
   if (!id)
     return res.status(404).json(NotFoundRedirectError("null"))
 
-  const result = await kv.del(id as string)
+  const searchId = `rd@${id}`
+
+  const result = await kv.del(searchId)
 
   if (!result)
-    return res.status(404).json(NotFoundRedirectError(id as string))
+    return res.status(404).json(NotFoundRedirectError(searchId))
   res.status(200).json(result)
 
 }
