@@ -18,10 +18,10 @@ interface HeaderLinkProps {
 export function HeaderLink(props: HeaderLinkProps): JSX.Element {
   return (
     <Link
-      className={`flex group items-center h-full pl-10 pr-10 rounded-xl ${
+      className={`flex group items-center py-2 h-fit md:h-full pl-10 pr-10 rounded-xl duration-200 delay-75  ${
         props.clicked?
         "bg-gradient-to-tr to-[#35423E] from-[#3D3A47]" :
-        "duration-200 delay-75 transition-all hover:bg-gradient-to-tr hover:to-[#35423E] hover:from-[#3D3A47]"
+        "transition-all hover:bg-gradient-to-tr hover:to-[#35423E] hover:from-[#3D3A47]"
       }`}
       href={props.path}
     >
@@ -59,20 +59,20 @@ export default function Header(props: HeaderProps): JSX.Element {
         <HeaderLink path="/books" clicked={props.path === "/books"}>
           Livros
         </HeaderLink>
-        {/* <HeaderLink path="/projects" clicked={props.path === "projects"}>
+        <HeaderLink path="/projects" clicked={props.path === "projects"}>
           Projetos
-        </HeaderLink> */}
+        </HeaderLink>
       </ul>
     </nav>
     <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="fixed top-0 p-2 m-4 bg-gradient-to-tr from-gray-dark from-[20%] to-[160%] rounded-xl to-gray-light z-40 md:hidden">
       <MaterialIcons.MdNotes className="size-8" />
     </button>
-    <div onClick={() => setIsMenuOpen(false)} className={`${isMenuOpen? 'fixed' : 'hidden'} w-dvw h-dvh bg-black-dark z-40 opacity-65`} />
-    <nav className={`${isMenuOpen? 'fixed' : 'hidden'} p-5 h-dvh bg-black rounded-r-[4rem] z-50`}>
+    <div onClick={() => setIsMenuOpen(false)} className={`${isMenuOpen? 'fixed' : 'hidden'} w-dvw h-dvh bg-black-dark z-40 opacity-65 md:hidden`} />
+    <nav className={`${isMenuOpen? 'fixed' : 'hidden'} p-5 h-dvh bg-black rounded-r-[4rem] z-50 md:hidden`}>
     {props.path !== "/" && (
         <Link href="/">
           <Image
-            className="w-24 h-24 fixed left-[5vw] top-[1.5rem]"
+            className="w-24 h-24 m-auto left-[5vw] top-[1.5rem]"
             src="/img/logo-polygon.svg"
             width={96}
             height={96}
@@ -80,12 +80,14 @@ export default function Header(props: HeaderProps): JSX.Element {
           />
         </Link>
       )}
-      <HeaderLink path="/books" clicked={props.path === "/books"}>
-        Livros
-      </HeaderLink>
-      {/* <HeaderLink path="/projects" clicked={props.path === "projects"}>
-        Projetos
-      </HeaderLink> */}
+      <ul className="mt-24 h-full flex flex-col gap-5">
+        <HeaderLink path="/books" clicked={props.path === "/books"}>
+          Livros
+        </HeaderLink>
+        <HeaderLink path="/projects" clicked={props.path === "/projects"}>
+          Projetos
+        </HeaderLink>
+      </ul>
     </nav>
     <div className="w-full h-20 md:hidden" />
     </>
