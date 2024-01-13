@@ -18,10 +18,10 @@ interface HeaderLinkProps {
 export function HeaderLink(props: HeaderLinkProps): JSX.Element {
   return (
     <Link
-      className={`flex group items-center py-2 h-fit md:h-full pl-10 pr-10 rounded-xl duration-200 delay-75  ${
+      className={`flex group items-center py-2 h-fit md:h-full pl-10 pr-10 rounded-xl transition-all duration-1000 ${
         props.clicked?
         "bg-gradient-to-tr to-[#35423E] from-[#3D3A47]" :
-        "transition-all hover:bg-gradient-to-tr hover:to-[#35423E] hover:from-[#3D3A47]"
+        "hover:bg-gradient-to-tr hover:to-[#35423E] hover:from-[#3D3A47]"
       }`}
       href={props.path}
     >
@@ -59,9 +59,13 @@ export default function Header(props: HeaderProps): JSX.Element {
         <HeaderLink path="/books" clicked={props.path === "/books"}>
           Livros
         </HeaderLink>
-        <HeaderLink path="/projects" clicked={props.path === "projects"}>
+        <HeaderLink path="/projects" clicked={props.path === "/projects"}>
           Projetos
         </HeaderLink>
+
+
+
+
       </ul>
     </nav>
     <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="fixed top-0 p-2 m-4 bg-gradient-to-tr from-gray-dark from-[20%] to-[160%] rounded-xl to-gray-light z-40 md:hidden">
