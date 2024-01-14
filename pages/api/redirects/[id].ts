@@ -1,8 +1,9 @@
 import { withLogging } from "@/infra/middlewares"
-import { NotFoundRedirectError } from "@/infra/models/responses"
+import RedirectDB from "@/infra/models/db/redirect"
+import { NotFoundRedirectError, UnauthorizedError } from "@/infra/models/responses"
 import withErrorInternal from "@/infra/utils/error"
+import { ErrorKV, ErrorKVCode } from "@/infra/utils/kv_schema"
 import validToken from "@/infra/utils/valid_token"
-import { kv } from "@vercel/kv"
 import { NextApiRequest, NextApiResponse } from "next"
 import { createRouter } from "next-connect"
 
@@ -17,30 +18,37 @@ async function getHandle(req: NextApiRequest, res: NextApiResponse) {
   if (!id)
     return res.status(404).json(NotFoundRedirectError("null"))
 
-  const result = await kv.get<{id: string; url: string; name: string}>(id as string)
-
-  if (!result)
-    return res.status(404).json(NotFoundRedirectError(id as string))
+  try {
+  const result = await RedirectDB.get(id as string)
   res.status(200).json(result)
+  } catch (error) {
+    if(error instanceof ErrorKV)
+      if(error.code === ErrorKVCode.NotFound)
+        return res.status(404).json(NotFoundRedirectError(id as string))
+
+    return withErrorInternal(error, req, res)
+  }
 }
 
 async function deleteHandle(req: NextApiRequest, res: NextApiResponse) {
   const { id } = req.query
 
   if(!validToken(req, res))
-    return res.status(401).json({ error: "Unauthorized", message: "You are not authorized to perform this action." })
+    return res.status(401).json(UnauthorizedError())
 
   if (!id)
     return res.status(404).json(NotFoundRedirectError("null"))
 
-  const searchId = `rd@${id}`
+  try {
+    await RedirectDB.delete(id as string)
+    res.status(200).json({ message: "Deleted" })
+  } catch (error) {
+    if(error instanceof ErrorKV)
+      if(error.code === ErrorKVCode.NotFound)
+        return res.status(404).json(NotFoundRedirectError(id as string))
 
-  const result = await kv.del(searchId)
-
-  if (!result)
-    return res.status(404).json(NotFoundRedirectError(searchId))
-  res.status(200).json(result)
-
+    return withErrorInternal(error, req, res)
+  }
 }
 
 export default router.handler({ onError: withErrorInternal })
