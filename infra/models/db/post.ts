@@ -39,6 +39,6 @@ PostSchema.pre("save", function (next) {
   next()
 });
 
-const Post = mongoose.model("post", PostSchema);
+const PostDB = mongoose.model("post", PostSchema);
 
-export default Post
+export default PostDB

@@ -37,6 +37,6 @@ const ProjectSchema = new mongoose.Schema({
 }, { _id: false })
   .index({ slug: 1 })
 
-const Project = mongoose.model("project", ProjectSchema)
+const ProjectDB = mongoose.model("project", ProjectSchema)
 
-export default Project
+export default ProjectDB
