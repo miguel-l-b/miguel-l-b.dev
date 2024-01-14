@@ -1,7 +1,6 @@
 import { z } from "zod";
 
 export const techSchema = z.object({
-  id: z.string().uuid(),
   img: z.string().url(),
   name: z.string().min(1).max(15),
   description: z.string().min(1).max(250),

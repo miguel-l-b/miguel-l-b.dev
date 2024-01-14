@@ -1,7 +1,6 @@
 import { z } from "zod"
 
 export const licenseSchema = z.object({
-  id: z.string().uuid(),
   name: z.string().min(1).max(15),
   description: z.string().min(1).max(250),
   projects: z.optional(z.array(z.string())),
