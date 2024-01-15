@@ -1,7 +1,8 @@
 import Image from 'next/image'
 import Head from 'next/head'
 import Header from '@/components/Header'
-import { useEffect, useState } from 'react'
+import TimeLine from '@/components/timeline'
+import Roller from '@/components/Roller'
 
 const texts = [
   {text: "Miguel Lopes B.", style: "bg-green text-xl"},
@@ -10,17 +11,6 @@ const texts = [
 ]
 
 export default function Home() {
-  const [index, setIndex] = useState(0)
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      if(index === 2) setIndex(0)
-      else
-      setIndex((index + 1 % 3))
-    }, 2500)
-    return () => clearInterval(interval)
-  }, [index])
-
   return (
     <>
     <Head>
@@ -37,7 +27,7 @@ export default function Home() {
         alt="logo tipo"
       />
       <br />
-      <h1>Olá 🖖, eu sou <span className={`pl-3 pr-3 rounded-md transition-all ease-in duration-500 text-black ${texts[index]?.style}`}>{texts[index]?.text}</span></h1>
+      <h1>Olá 🖖, eu sou <Roller values={texts} /></h1>
       <br />
       <br />
       <h1>🧑‍💻 Desenvolvendo aplicações Web e Mobile desde 2020</h1>
@@ -53,6 +43,12 @@ export default function Home() {
       </h1>
       <h1>🧐 Estou de olho no Deno e Bun</h1>
       <h1>🚀 Buscando oportunidade de estágio</h1>
+    </main>
+    <main className="mt-40 py-20 bg-black-dark w-full h-full">
+      <h1 className="text-center text-2xl font-orbitron font-extrabold text-gray-light mb-10">
+        Linha do Tempo
+      </h1>
+      <TimeLine.root />
     </main>
   </>
   )
