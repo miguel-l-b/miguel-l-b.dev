@@ -21,8 +21,12 @@ async function postHandle(req: NextApiRequest, res: NextApiResponse) {
     return res.status(400).json({ error: "Bad request", message: "The request body is invalid." })
 
   try {
-    const result = await RedirectDB.save(req.body)
-    res.status(200).json(result)
+    const result = redirectSchema.parse(req.body)
+    const id = Math.random().toString(36).substring(2)
+    if(await RedirectDB.exist(id))
+      return res.status(409).json({ error: "Conflict", message: "The redirect already exists." })
+    await RedirectDB.save(result, id)
+    res.status(200).json({ id, ...result })
   } catch (error) {
     if(error instanceof ErrorKV)
       if(error.code === ErrorKVCode.AlreadyExists)

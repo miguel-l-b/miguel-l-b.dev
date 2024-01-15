@@ -19,8 +19,7 @@ async function getHandle(req: NextApiRequest, res: NextApiResponse) {
     return res.status(404).json(NotFoundRedirectError("null"))
 
   try {
-  const result = await RedirectDB.get(id as string)
-  res.status(200).json(result)
+    res.status(200).json(await RedirectDB.get(id as string))
   } catch (error) {
     if(error instanceof ErrorKV)
       if(error.code === ErrorKVCode.NotFound)
