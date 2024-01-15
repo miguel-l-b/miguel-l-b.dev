@@ -68,15 +68,19 @@ export default class KVSchema<TypeKV> {
 
   async get(id: string) {
     const key = this.start + id
-    return await kv.get(key).then((value) => {
-      if (value === null) {
-        throw new ErrorKV(`The ${this.schema} not exist id ${id}`, ErrorKVCode.NotFound)
-      } else {
-        return value as TypeKV
-      }
-    }).catch((err) => {
-      throw new ErrorKV(err, ErrorKVCode.Unknown)
-    })
+    try {
+      return await kv.get(key).then((value) => {
+        if (value === null) {
+          throw new ErrorKV(`The ${this.schema} not exist id ${id}`, ErrorKVCode.NotFound)
+        } else {
+          return value as TypeKV
+        }
+      }).catch((err) => {
+        throw new ErrorKV(err, ErrorKVCode.Unknown)
+      })
+    } catch (error) {
+      throw new ErrorKV(error+"", ErrorKVCode.NotFound)
+    }
   }
 
   async delete(id: string) {
@@ -128,6 +132,12 @@ export default class KVSchema<TypeKV> {
 
   async getAll() {
     const keys = await kv.keys(this.start + "*")
-    return await Promise.all(keys.map(key => kv.get(key) as Promise<TypeKV>))
+    return await Promise.all(keys.map(async (key) => {
+      const data = await kv.get(key) as Promise<TypeKV>
+      return {
+        id: key.replace(this.start, ""),
+        ...data
+      }
+    }))
   }
 }
