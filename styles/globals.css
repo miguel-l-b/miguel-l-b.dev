@@ -11,6 +11,14 @@
   @apply cursor-none;
 }
 
+::-webkit-scrollbar {
+  @apply w-3 bg-black rounded-l-md;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-dark rounded-md;
+}
+
 :root {
   @apply text-[14px] md:text-[16px];
 }
