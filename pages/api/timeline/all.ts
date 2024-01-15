@@ -8,9 +8,9 @@ const router = createRouter<NextApiRequest, NextApiResponse>()
   .use(withLogging)
   .get(getHandle)
 
-function getHandle(req: NextApiRequest, res: NextApiResponse) {
+async function getHandle(req: NextApiRequest, res: NextApiResponse) {
   try {
-    return res.status(200).json(timelineDB.getAll())
+    return res.status(200).json(await timelineDB.getAll())
   } catch (error) {
     withErrorInternal(error, req, res)
   }

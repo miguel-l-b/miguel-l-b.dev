@@ -11,14 +11,14 @@ const router = createRouter<NextApiRequest, NextApiResponse>()
   .get(getHandle)
   .delete(deleteHandle)
 
-function getHandle(req: NextApiRequest, res: NextApiResponse) {
+async function getHandle(req: NextApiRequest, res: NextApiResponse) {
   const { id } = req.query
 
   if (!id)
     return res.status(404).json(NotFoundTimelineError("null"))
 
   try {
-    return res.status(200).json(timelineDB.get(id as string))
+    return res.status(200).json(await timelineDB.get(id as string))
   } catch (error) {
     if(error instanceof ErrorKV)
       if(error.code === ErrorKVCode.NotFound)
@@ -28,14 +28,15 @@ function getHandle(req: NextApiRequest, res: NextApiResponse) {
   }
 }
 
-function deleteHandle(req: NextApiRequest, res: NextApiResponse) {
+async function deleteHandle(req: NextApiRequest, res: NextApiResponse) {
   const { id } = req.query
 
   if (!id)
     return res.status(404).json(NotFoundTimelineError("null"))
 
   try {
-    return res.status(200).json(timelineDB.delete(id as string))
+    await timelineDB.delete(id as string)
+    return res.status(200).json({ message: "Deleted" })
   } catch (error) {
     if(error instanceof ErrorKV)
       if(error.code === ErrorKVCode.NotFound)

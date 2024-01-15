@@ -1,5 +1,6 @@
 import { withLogging } from "@/infra/middlewares"
 import { timelineSchema } from "@/infra/models"
+import timelineDB from "@/infra/models/db/timeline"
 import { UnauthorizedError } from "@/infra/models/responses"
 import withErrorInternal from "@/infra/utils/error"
 import ValidSchema from "@/infra/utils/valid_schema"
@@ -11,7 +12,7 @@ const router = createRouter<NextApiRequest, NextApiResponse>()
   .use(withLogging)
   .post(postHandle)
 
-function postHandle(req: NextApiRequest, res: NextApiResponse) {
+async function postHandle(req: NextApiRequest, res: NextApiResponse) {
   if(!validToken(req, res))
     return res.status(401).json(UnauthorizedError())
   if(!ValidSchema(timelineSchema, req.body))
@@ -19,6 +20,7 @@ function postHandle(req: NextApiRequest, res: NextApiResponse) {
 
   try {
     const result = timelineSchema.parse(req.body)
+    await timelineDB.save(result)
     return res.status(200).json(result)
   } catch (error) {
     return withErrorInternal(error, req, res)
