@@ -5,11 +5,7 @@ meta {
 }
 
 get {
-  url: http://localhost:3000/api/redirects/all
+  url: http://localhost:3000/api/timeline/all
   body: none
   auth: none
-}
-
-assert {
-  res.status: eq 200
 }

@@ -1,0 +1,19 @@
+meta {
+  name: create
+  type: http
+  seq: 3
+}
+
+post {
+  url: http://localhost:3000/api/timeline/create
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "title": "Curso em Vídeo 🦗",
+    "content": "Conheci o grande gafanhoto Gustavo Guanabara e me apoderei de seus conhecimentos como um pequeno gafanhoto! \n Em busca de conhecimento para desenvolver sites na internet encontrei seus cursos e dei início ao curso de HTML, JavaScript, CSS e PHP.",
+    "date": "2018"
+  }
+}
