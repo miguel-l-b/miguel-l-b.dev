@@ -1,0 +1,19 @@
+meta {
+  name: create
+  type: http
+  seq: 1
+}
+
+post {
+  url: http://localhost:3000/api/license/create
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "name": "MIT",
+    "description": "A Licença MIT (Massachusetts Institute of Technology) é uma licença de software de código aberto que é amplamente utilizada na comunidade de desenvolvimento de software. Ela é conhecida por ser uma licença permissiva, o que significa que permite aos usuários fazerem quase tudo o que desejam com o software, desde que incluam o aviso de copyright e a declaração de licença original no software ou na documentação associada.",
+    "site": "https://mit-license.org"
+  }
+}

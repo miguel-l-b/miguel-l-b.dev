@@ -1,0 +1,23 @@
+meta {
+  name: create
+  type: http
+  seq: 3
+}
+
+post {
+  url: http://localhost:3000/api/techs/create
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "img": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
+    "name": "NodeJs",
+    "description": "O Node.js é uma plataforma de desenvolvimento de software de código aberto, construída sobre o motor V8 do Google Chrome. Ele permite a execução de código JavaScript no lado do servidor, possibilitando a criação de aplicações web escaláveis e de alta performance. Node.js é particularmente adequado para aplicações em tempo real e APIs (Interfaces de Programação de Aplicações) devido à sua capacidade de manipular um grande número de conexões simultâneas de forma eficiente.\nO Node.js utiliza um modelo de I/O não bloqueante, o que significa que as operações de entrada e saída (I/O) não bloqueiam a execução do programa. Isso permite que o Node.js lide com várias operações concorrentes de maneira eficaz, tornando-o ideal para aplicações que requerem comunicação em tempo real, como chat em tempo real, jogos online e transmissões ao vivo.",
+    "tags": ["Node.js", "JavaScript", "Servidor", "Plataforma", "Desenvolvimento", "Backend", "API", "I/O Não Bloqueante", "npm", "Tempo Real"],
+    "license": "a4c69940-7476-4251-bcf2-3bb276f8c1f4",
+    "github": "https://github.com/nodejs/node",
+    "site": "https://nodejs.org"
+  }
+}
