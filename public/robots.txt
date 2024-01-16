@@ -1,3 +1,9 @@
-# https://www.robotstxt.org/robotstxt.html
+# *
 User-agent: *
-Disallow:
+Allow: /
+
+# Host
+Host: https://miguellb.net
+
+# Sitemaps
+Sitemap: https://miguellb.net/sitemap.xml
