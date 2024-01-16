@@ -8,6 +8,11 @@ const nextConfig = {
         hostname: 'logopng.com.br',
         pathname: '**',
       },
+      {
+        protocol: 'https',
+        hostname: 'cdn.jsdelivr.net',
+        pathname: '**',
+      }
     ],
   },
 }
