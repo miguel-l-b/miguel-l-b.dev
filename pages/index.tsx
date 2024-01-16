@@ -1,8 +1,10 @@
 import Image from 'next/image'
 import Head from 'next/head'
+import { useRouter } from 'next/router'
 import Header from '@/components/Header'
 import TimeLine from '@/components/timeline'
 import Roller from '@/components/Roller'
+import * as MaterialIcons from "react-icons/md"
 
 const texts = [
   {text: "Miguel Lopes B.", style: "bg-green text-xl"},
@@ -11,6 +13,7 @@ const texts = [
 ]
 
 export default function Home() {
+  const router = useRouter()
   return (
     <>
     <Head>
@@ -28,6 +31,12 @@ export default function Home() {
       />
       <br />
       <h1>Olá 🖖, eu sou <Roller values={texts} /></h1>
+      <button
+        onClick={() => router.push("/cv.pdf")}
+        className="m-auto flex items-center gap-5 border-blue border-4 text-blue font-bold rounded-full px-4 py-2 mt-10 hover:bg-blue-dark"
+      >
+        Ver meu CV <MaterialIcons.MdOutlineFileDownload className='text-2xl' />
+      </button>
       <br />
       <br />
       <h1>🧑‍💻 Desenvolvendo aplicações Web e Mobile desde 2020</h1>
