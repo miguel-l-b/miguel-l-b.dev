@@ -7,6 +7,7 @@ import Head from 'next/head'
 
 import Curse from '@/components/Curse'
 import '@/styles/globals.css'
+import Footer from '@/components/Footer'
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
@@ -19,8 +20,11 @@ export default function App({ Component, pageProps }: AppProps) {
           content="Miguel L B - Desenvolvedor Web Full Stack"
         />
       </Head>
-      <Curse />
-      <Component {...pageProps} />
+      <div className="min-h-screen flex flex-col justify-between">
+        <Curse />
+        <Component {...pageProps} />
+        <Footer />
+      </div>
       <SpeedInsights />
       <Analytics />
     </>
