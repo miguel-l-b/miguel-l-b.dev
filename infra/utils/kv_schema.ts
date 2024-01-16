@@ -42,9 +42,13 @@ export default class KVSchema<TypeKV> {
   async save(data: TypeKV, id?: string) {
     if(id === undefined) id = generateUUID()
     const key = this.start + id
-    await kv.get(key).then((value) => {
+    return await kv.get(key).then((value) => {
       if (value === null) {
         kv.set(key, data)
+        return {
+          id,
+          ...data
+        }
       } else {
         throw new ErrorKV(`The ${this.schema} exist id ${id}`, ErrorKVCode.AlreadyExists)
       }

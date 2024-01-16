@@ -35,7 +35,7 @@ async function postHandle(req: NextApiRequest, res: NextApiResponse) {
 
   if (password === process.env.ADMIN_SECRET) {
     const token = jwt.sign({ admin: true }, process.env.SECRET!, { expiresIn: "7d" })
-    cookies.set("token", token, { httpOnly: true, maxAge: 60 * 60 * 24 * 30 })
+    cookies.set("token", token, { httpOnly: true, maxAge: 60 * 60 * 60 * 24 * 30 })
     return res.status(200).json({ success: true })
   } else {
     return res.status(401).json({ error: "Unauthorized", message: "You are not authorized to perform this action." })
