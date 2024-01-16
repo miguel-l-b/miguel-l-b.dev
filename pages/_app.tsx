@@ -1,5 +1,7 @@
 import type { AppProps } from 'next/app'
 import { usePathname } from 'next/navigation'
+import { Analytics } from '@vercel/analytics/react'
+import { SpeedInsights } from '@vercel/speed-insights/next'
 
 import Head from 'next/head'
 
@@ -19,6 +21,8 @@ export default function App({ Component, pageProps }: AppProps) {
       </Head>
       <Curse />
       <Component {...pageProps} />
+      <SpeedInsights />
+      <Analytics />
     </>
   )
 }
