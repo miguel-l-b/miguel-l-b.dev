@@ -6,8 +6,6 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   // const urls = await fetch('https//miguellb.net/api')
 
   return getServerSideSitemapIndexLegacy(ctx, [
-    'https://miguellb.net/path-1.xml',
-    'https://miguellb.netpath-2.xml',
   ])
 }
 

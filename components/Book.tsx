@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import * as MaterialIcons from "react-icons/md"
 
 interface BookProps {
   img: string
@@ -27,21 +28,21 @@ export default function Book(props: BookProps): JSX.Element {
       />
       <div className="ml-10">
         <h2 className="text-xl text-white">{props.name}</h2>
-        <h3 className="text-lg text-gray font-bold font-jura">Por que Ler?</h3>
-        <p className="text-md text-gray font-jura">{props.why}</p>
-        <div className="flex gap-5">
+        <h3 className="flex items-center gap-3 text-lg text-gray font-bold font-jura">Por que Ler? <MaterialIcons.MdExpandCircleDown className={`sm:hidden`} /></h3>
+        <p className={`text-md text-gray font-jura hidden sm:block`}>{props.why}</p>
+        <div className="flex gap-4">
           <h3 className="text-lg">Links de onde Comprar:</h3>
-          {physical.map((item, index) => (
-            <a href={item.url} target="_blank" rel="noreferrer" key={index}>
-              <Image src={item.logo} className="w-6" width={24} height={24} alt="logo da empresa ..." />
-            </a>
-          ))}
+            {physical.map((item, index) => (
+              <a href={item.url} target="_blank" rel="noreferrer" key={index}>
+                <Image src={item.logo} className="w-6" width={24} height={24} alt="logo da empresa ..." />
+              </a>
+            ))}
           {electronic.length > 0 && <span>eBook:</span>}
-          {electronic.map((item, index) => (
-            <a href={item.url} target="_blank" rel="noreferrer" key={index}>
-              <Image src={item.logo} className="w-6" width={24} height={24} alt="logo da empresa ..." />
-            </a>
-          ))}
+            {electronic.map((item, index) => (
+              <a href={item.url} target="_blank" rel="noreferrer" key={index}>
+                <Image src={item.logo} className="w-6" width={24} height={24} alt="logo da empresa ..." />
+              </a>
+            ))}
         </div>
       </div>
     </div>
