@@ -13,6 +13,11 @@ export const NotFoundTimelineError = (id: string) => ({
   message: `The timeline ${id} is not found.`
 })
 
+export const NotFoundLicenseError = (id: string) => ({
+  error: "Not found",
+  message: `The license ${id} is not found.`
+})
+
 export const NotFoundCustomMsgError = (message: string) => ({
   error: "Not found",
   message: message
