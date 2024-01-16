@@ -1,9 +1,9 @@
-import { z } from "zod";
+import { z } from "zod"
 
 export const techSchema = z.object({
   img: z.string().url(),
   name: z.string().min(1).max(15),
-  description: z.string().min(1).max(250),
+  description: z.string().min(1).max(2500),
   tags: z.array(z.string()),
   license: z.string().uuid(),
   projects: z.optional(z.array(z.string())),
