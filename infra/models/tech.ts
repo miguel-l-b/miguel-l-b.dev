@@ -5,7 +5,7 @@ export const techSchema = z.object({
   name: z.string().min(1).max(15),
   description: z.string().min(1).max(2500),
   tags: z.array(z.string()),
-  license: z.string().uuid(),
+  license: z.optional(z.string().uuid()),
   projects: z.optional(z.array(z.string())),
   parents: z.optional(z.array(z.string().uuid())),
   github: z.optional(z.string().url()),
