@@ -5,6 +5,7 @@ import Header from '@/components/Header'
 import TimeLine from '@/components/timeline'
 import Roller from '@/components/Roller'
 import * as MaterialIcons from "react-icons/md"
+import Link from 'next/link'
 
 const texts = [
   {text: "Miguel Lopes B.", style: "bg-green text-xl"},
@@ -14,6 +15,7 @@ const texts = [
 
 export default function Home() {
   const router = useRouter()
+
   return (
     <>
     <Head>
@@ -52,13 +54,15 @@ export default function Home() {
       </h1>
       <h1>🧐 Estou de olho no Deno e Bun</h1>
       <h1>🚀 Buscando oportunidade de estágio</h1>
+      <Link href="#timeline"><MaterialIcons.MdOutlineDownloading  className="m-auto mt-20 text-5xl animate-bounce" /></Link>
     </main>
-    <main className="mt-40 py-20 bg-black-dark w-full h-full">
+    <section id="timeline" className="mt-40 py-20 bg-black-dark w-full h-full rounded-md">
       <h1 className="text-center text-2xl font-orbitron font-extrabold text-gray-light mb-10">
-        Linha do Tempo
+        <Link href="#timeline">Linha do Tempo</Link>
       </h1>
       <TimeLine.root />
-    </main>
+    </section>
+
   </>
   )
 }
