@@ -10,7 +10,7 @@ export default function Projects(): JSX.Element {
   const [tech, setTech] = useState<techType | undefined>(undefined)
 
   useEffect(() => {
-    fetch(`http://localhost:3000/api/techs/${params.id}`)
+    fetch(`/api/techs/${params.id}`)
       .then(res => res.json())
       .then(data => setTech(data))
   }, [params])
