@@ -6,9 +6,10 @@ import TimeLine from '@/components/timeline'
 import Roller from '@/components/Roller'
 import * as MaterialIcons from "react-icons/md"
 import Link from 'next/link'
+import Techs from '@/components/Techs'
 
 const texts = [
-  {text: "Miguel Lopes B.", style: "bg-green text-xl"},
+  {text: "Miguel Lopes Braido", style: "bg-green text-xl"},
   {text: "Desenvolvedor de Software", style: "bg-blue text-xl"},
   {text: "Desenvolvedor FullStack", style: "bg-yellow text-xl"},
 ]
@@ -54,15 +55,24 @@ export default function Home() {
       </h1>
       <h1>🧐 Estou de olho no Deno e Bun</h1>
       <h1>🚀 Buscando oportunidade de estágio</h1>
-      <Link href="#timeline"><MaterialIcons.MdOutlineDownloading  className="m-auto mt-20 text-5xl animate-bounce" /></Link>
+      <Link href="#timeline">
+        <MaterialIcons.MdOutlineDownloading  className="m-auto mt-20 text-5xl animate-bounce" />
+      </Link>
     </main>
-    <section id="timeline" className="mt-40 py-20 bg-black-dark w-full h-full rounded-md">
+    <section id="timeline" className="flex flex-col justify-center mt-40 py-20 bg-black-dark w-full min-h-screen rounded-md">
       <h1 className="text-center text-2xl font-orbitron font-extrabold text-gray-light mb-10">
         <Link href="#timeline">Linha do Tempo</Link>
       </h1>
       <TimeLine.root />
     </section>
-
+    <section id="techs" className="flex flex-col gap-20 justify-center items-center min-h-[50dvh]">
+      <h1 className="text-2xl text-center mt-10 basis-full">
+        <Link href="#techs">
+          Tecnologias que utilizo e estudo
+        </Link>
+      </h1>
+      <Techs />
+    </section>
   </>
   )
 }
