@@ -45,7 +45,7 @@ export default function Header(props: HeaderProps): JSX.Element {
       {props.path !== "/" ? (
         <Link href="/">
           <Image
-            className="w-24 h-24 fixed left-[5vw] top-[1.5rem]"
+            className="w-24 h-24 fixed left-[5dvw] top-[1.5rem]"
             src="/img/logo-polygon.svg"
             width={96}
             height={96}
@@ -53,9 +53,9 @@ export default function Header(props: HeaderProps): JSX.Element {
           />
         </Link>
       ) : (
-        <div className="w-24 h-24 fixed left-[10rem] top-[1.5rem]"></div>
+        <div className="w-24 h-24 fixed left-[5dvw] top-[1.5rem]"/>
       )}
-      <ul className="flex gap-20 justify-center bg-black-light w-[60dvw] h-14 rounded-full shadow-sm shadow-black-dark">
+      <ul className="flex gap-20 justify-center bg-black-light w-[65dvw] h-14 rounded-full shadow-sm shadow-black-dark">
         <HeaderLink path="/books" clicked={props.path === "/books"}>
           Livros
         </HeaderLink>
