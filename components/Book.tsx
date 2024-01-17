@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import { useState } from 'react'
 import * as MaterialIcons from "react-icons/md"
 
 interface BookProps {
@@ -13,6 +14,7 @@ interface BookProps {
 }
 
 export default function Book(props: BookProps): JSX.Element {
+  const [isOpenedMore, setIsOpenedMore] = useState<boolean>(false)
   const [physical, electronic] = [
     props.buy.filter((e) => !e.isElectronic),
     props.buy.filter((e) => e.isElectronic),
@@ -28,8 +30,15 @@ export default function Book(props: BookProps): JSX.Element {
       />
       <div className="ml-10">
         <h2 className="text-xl text-white">{props.name}</h2>
-        <h3 className="flex items-center gap-3 text-lg text-gray font-bold font-jura">Por que Ler? <MaterialIcons.MdExpandCircleDown className={`sm:hidden`} /></h3>
-        <p className={`text-md text-gray font-jura hidden sm:block`}>{props.why}</p>
+        <h3
+          onClick={() => setIsOpenedMore(!isOpenedMore)}
+          className="flex items-center gap-3 text-lg text-gray font-bold font-jura"
+        >
+          Por que Ler?
+          <MaterialIcons.MdExpandCircleDown  className={`sm:hidden transition-all duration-500 ${isOpenedMore ? "rotate-180 " : "rotate-0"}`} />
+        </h3>
+        <p className={`text-md text-gray font-jura sm:block ${!isOpenedMore && "hidden"}`}>{props.why}</p>
+        <br />
         <div className="flex gap-4">
           <h3 className="text-lg">Links de onde Comprar:</h3>
             {physical.map((item, index) => (
