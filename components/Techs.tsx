@@ -1,7 +1,6 @@
 import { techType } from "@/infra/models"
-import Image from "next/image"
-import Link from "next/link"
 import { useEffect, useState } from "react"
+import TechView from "./techView"
 
 export default function Techs() {
   const [techs, setTechs] = useState<Array<techType & { id: string }>>([])
@@ -83,15 +82,7 @@ export default function Techs() {
       {/* <h2 className={`text-xl font-extralight basis-full text-center`}>Outros:</h2> */}
       {
         others.map((tech, index) => (
-          <Link key={index} href={`/techs/${tech.id}`}>
-            <Image
-              className={`w-10 h-10`}
-              src={tech.img}
-              width={40}
-              height={40}
-              alt={`icon da tecnologia ${tech.name}`}
-            />
-          </Link>
+          <TechView key={index} content={tech} />
         ))
       }
     </div>
