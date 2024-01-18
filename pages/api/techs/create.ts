@@ -20,7 +20,7 @@ async function postHandler(req: NextApiRequest, res: NextApiResponse) {
 
   try {
     const result = techSchema.parse(req.body)
-    return res.status(201).json(await TechDB.save(result))
+    return res.status(201).json(await TechDB.save(result, result.name))
   } catch (error) {
     withErrorInternal(error, req, res)
   }

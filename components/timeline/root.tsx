@@ -10,8 +10,10 @@ export default function Root() {
 
   useEffect(() => {
     fetch("/api/timeline/all").then(async (res) => {
+      if(res.status !== 200) return
       const data = await res.json() as timelineType[]
-      data.sort((a, b) => a.date > b.date ? 1 : -1)
+      if(data && data.length !== 0)
+        data.sort((a, b) => a.date > b.date ? 1 : -1)
       if(data.length !== 0)
         setContent(data)
     })

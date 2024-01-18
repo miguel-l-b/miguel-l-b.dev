@@ -16,16 +16,18 @@ export default function Techs() {
   }, [])
 
   useEffect(() => {
-    setLanguages(techs.filter(tech => tech.tags.includes('language')))
-    setRunners(techs.filter(tech => tech.tags.includes('runner')))
-    setDatabases(techs.filter(tech => tech.tags.includes('database')))
-    setOthers(
-      techs.filter(tech =>
-        !tech.tags.includes('language') &&
-        !tech.tags.includes('runner') &&
-        !tech.tags.includes('database')
+    if(techs.length > 0) {
+      setLanguages(techs.filter(tech => tech.tags.includes('language')))
+      setRunners(techs.filter(tech => tech.tags.includes('runner')))
+      setDatabases(techs.filter(tech => tech.tags.includes('database')))
+      setOthers(
+        techs.filter(tech =>
+          !tech.tags.includes('language') &&
+          !tech.tags.includes('runner') &&
+          !tech.tags.includes('database')
+        )
       )
-    )
+    }
   }, [techs])
 
   return (
