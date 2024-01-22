@@ -6,19 +6,19 @@ import * as MaterialIcons from "react-icons/md"
 
 import Header from "@/components/Header"
 import { TechType } from "@/infra/models/db/tech"
-import { useParams } from "next/navigation"
 import Footer from "@/components/Footer"
+import { useRouter } from "next/router"
 
 export default function Projects(): JSX.Element {
-  const { id } = useParams<{ id: string }>()
+  const params = useRouter().query
   const [tech, setTech] = useState<TechType | undefined>(undefined)
 
   useEffect(() => {
-    console.log(id)
-    fetch(`/api/techs/${id}`)
+    console.log(params.id)
+    fetch(`/api/techs/${params.id}`)
       .then(res => res.json())
       .then(data => setTech(data))
-  }, [id])
+  }, [params])
 
   useEffect(() => {
     console.log(tech)
