@@ -1,10 +1,9 @@
-import connectionMongo from "@/infra/providers/mongodb"
-
-const mongoose = connectionMongo()
+import mongoose from "mongoose"
 
 const ProjectSchema = new mongoose.Schema({
   slug: {
     type: String,
+    index: true,
     required: true,
     unique: true
   },
@@ -38,5 +37,4 @@ const ProjectSchema = new mongoose.Schema({
   .index({ slug: 1 })
 
 const ProjectDB = mongoose.model("project", ProjectSchema)
-
 export default ProjectDB

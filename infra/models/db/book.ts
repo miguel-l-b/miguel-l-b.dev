@@ -1,27 +1,29 @@
-import connectionMongo from "@/infra/providers/mongodb"
+import { KVSchema, convertToSchema } from "@/infra/utils/kv"
+import { z } from "zod"
 
-const mongoose = connectionMongo()
-
-const BookSchema = new mongoose.Schema({
+const dbSchema = {
   img: {
-    type: String,
-    required: true
+    type: z.string().url()
   },
   name: {
-    type: String,
-    required: true
+    type: z.string().min(1).max(15),
+    index: true,
+    unique: true
   },
   why: {
-    type: String,
-    required: true
+    type: z.string().min(1).max(2500),
   },
-  buy: Array<{
-    logo: string,
-    url: string
-    isElectric: boolean
-  }>
-})
+  buy: {
+    type: z.array(z.object({
+      logo: z.string().url(),
+      url: z.string().url(),
+      isElectric: z.boolean()
+    }))
+  }
+}
 
-const BookDB = mongoose.model("book", BookSchema)
+export const bookSchema = convertToSchema<typeof dbSchema>(dbSchema)
+export type BookType = z.infer<typeof bookSchema>
 
+const BookDB = new KVSchema(dbSchema).model<typeof dbSchema>("book")
 export default BookDB

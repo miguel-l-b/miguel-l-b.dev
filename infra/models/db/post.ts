@@ -1,10 +1,9 @@
-import connectionMongo from "@/infra/providers/mongodb"
-
-const mongoose = connectionMongo()
+import mongoose from "mongoose"
 
 const PostSchema = new mongoose.Schema({
   slug: {
     type: String,
+    index: true,
     required: true,
     unique: true
   },
@@ -39,6 +38,5 @@ PostSchema.pre("save", function (next) {
   next()
 });
 
-const PostDB = mongoose.model("post", PostSchema);
-
+const PostDB = mongoose.model("post", PostSchema)
 export default PostDB
