@@ -1,14 +1,14 @@
-import { techType } from "@/infra/models"
+import { TechType } from "@/infra/models/db/tech"
 import { useEffect, useState } from "react"
 import TechView from "./techView"
 
 export default function Techs() {
-  const [techs, setTechs] = useState<Array<techType & { id: string }>>([])
+  const [techs, setTechs] = useState<Array<TechType & { id: string }>>([])
 
-  const [languages, setLanguages] = useState<Array<techType & { id: string }>>([])
-  const [runners, setRunners] = useState<Array<techType & { id: string }>>([])
-  const [databases, setDatabases] = useState<Array<techType & { id: string }>>([])
-  const [others, setOthers] = useState<Array<techType & { id: string }>>([])
+  const [languages, setLanguages] = useState<Array<TechType & { id: string }>>([])
+  const [runners, setRunners] = useState<Array<TechType & { id: string }>>([])
+  const [databases, setDatabases] = useState<Array<TechType & { id: string }>>([])
+  const [others, setOthers] = useState<Array<TechType & { id: string }>>([])
 
   useEffect(() => {
     fetch('/api/techs/all')

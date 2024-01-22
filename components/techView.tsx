@@ -1,16 +1,16 @@
-import { techType } from "@/infra/models"
+import { TechType } from "@/infra/models/db/tech"
 import Link from "next/link"
 import Image from "next/image"
 
 export interface techViewProps {
-  content: techType & { id: string }
+  content: TechType & { id: string }
 }
 
 export default function TechView({ content }: techViewProps) {
   return(
     <Link
-      className="flex flex-col relative items-center hover:bg-gray hover:scale-150 justify-center p-2 rounded-t-xl group"
-      href={`/techs/${content.id}`}
+      className="flex flex-col relative transition-all delay-200 duration-200 items-center rounded-lg hover:rounded-t-xl bg-blue bg-opacity-15 hover:scale-150 justify-center p-2 group"
+      href={`/techs/${content.name}`}
     >
       <Image
         className={`w-10 h-10`}
@@ -20,7 +20,7 @@ export default function TechView({ content }: techViewProps) {
         alt={`icon da tecnologia ${content.name}`}
       />
       <span
-        className="opacity-0 z-50 bg-gray-dark px-2 absolute -bottom-0 group-hover:opacity-100 group-hover:-bottom-5 rounded-md whitespace-nowrap text-center min-w-16">
+        className="transition-all duration-100 opacity-0 z-50 shadow-sm shadow-black-dark bg-gray-dark px-2 absolute -bottom-0 group-hover:opacity-100 group-hover:-bottom-5 rounded-md whitespace-nowrap text-center min-w-16">
           {content.name}
       </span>
     </Link>

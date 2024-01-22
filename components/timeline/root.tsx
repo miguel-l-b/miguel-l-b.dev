@@ -1,17 +1,17 @@
 import { useEffect, useState } from "react"
 import TimeLine from "."
-import { timelineType } from "@/infra/models"
+import { TimelineType } from "@/infra/models/db/timeline"
 import Markdown from "react-markdown"
 
 
 export default function Root() {
-  const [content, setContent] = useState<timelineType[] | undefined>(undefined)
+  const [content, setContent] = useState<TimelineType[] | undefined>(undefined)
   const [indexActivate, setIndex] = useState<number>(0)
 
   useEffect(() => {
     fetch("/api/timeline/all").then(async (res) => {
       if(res.status !== 200) return
-      const data = await res.json() as timelineType[]
+      const data = await res.json() as TimelineType[]
       if(data && data.length !== 0)
         data.sort((a, b) => a.date > b.date ? 1 : -1)
       if(data.length !== 0)
