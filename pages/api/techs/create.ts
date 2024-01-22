@@ -1,5 +1,5 @@
 import { withLogging } from "@/infra/middlewares"
-import { techSchema } from "@/infra/models"
+import { TechType, techSchema } from "@/infra/models/db/tech"
 import TechDB from "@/infra/models/db/tech"
 import { BadRequestInvalidBodyError, UnauthorizedError } from "@/infra/models/responses"
 import withErrorInternal from "@/infra/utils/error"
@@ -20,7 +20,7 @@ async function postHandler(req: NextApiRequest, res: NextApiResponse) {
 
   try {
     const result = techSchema.parse(req.body)
-    return res.status(201).json(await TechDB.save(result, result.name))
+    return res.status(201).json(await TechDB.create(result as any))
   } catch (error) {
     withErrorInternal(error, req, res)
   }

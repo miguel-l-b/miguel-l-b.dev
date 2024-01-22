@@ -19,10 +19,6 @@ const dbSchema = {
   },
   license: {
     type: z.optional(z.string().uuid()),
-    // ref: {
-    //   model: "licenses",
-    //   handle: LicenseDB.findById
-    // }
   },
   projects: {
     type: z.optional(z.array(z.string()))
