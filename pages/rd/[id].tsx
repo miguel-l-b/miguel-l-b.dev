@@ -1,3 +1,4 @@
+import Footer from '@/components/Footer'
 import { useParams } from 'next/navigation'
 import { useEffect } from 'react'
 
@@ -13,9 +14,12 @@ export default function Redirection(context: any) {
   }, [data])
 
   return(
-    <main className="flex flex-col justify-center items-center h-dvh">
-      <h1>Redirecionando ...</h1>
-      <div className="animate-spin mt-20 w-10 h-10 border-blue border-l-4 rounded-full"/>
-    </main>
+    <>
+      <main className="flex flex-col justify-center items-center h-dvh">
+        <h1>Redirecionando ...</h1>
+        <div className="animate-spin mt-20 w-10 h-10 border-blue border-l-4 rounded-full"/>
+      </main>
+      <Footer />
+    </>
   )
 }

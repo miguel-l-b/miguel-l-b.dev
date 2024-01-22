@@ -23,7 +23,6 @@ export default function App({ Component, pageProps }: AppProps) {
       <div className="min-h-screen flex flex-col justify-between">
         <Curse />
         <Component {...pageProps} />
-        <Footer />
       </div>
       <SpeedInsights />
       <Analytics />

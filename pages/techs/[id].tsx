@@ -1,23 +1,24 @@
 import Head from "next/head"
 import Image from "next/image"
 import Link from "next/link"
-import { useRouter } from "next/router"
 import { useEffect, useState } from "react"
 import * as MaterialIcons from "react-icons/md"
 
 import Header from "@/components/Header"
-import { techType } from "@/infra/models"
+import { TechType } from "@/infra/models/db/tech"
+import { useParams } from "next/navigation"
+import Footer from "@/components/Footer"
 
 export default function Projects(): JSX.Element {
-  const params = useRouter().query
-  const [tech, setTech] = useState<techType | undefined>(undefined)
+  const { id } = useParams<{ id: string }>()
+  const [tech, setTech] = useState<TechType | undefined>(undefined)
 
   useEffect(() => {
-    if(params.id !== undefined)
-      fetch(`/api/techs/${params.id}`)
-        .then(res => res.json())
-        .then(data => setTech(data))
-  }, [params])
+    console.log(id)
+    fetch(`/api/techs/${id}`)
+      .then(res => res.json())
+      .then(data => setTech(data))
+  }, [id])
 
   useEffect(() => {
     console.log(tech)
@@ -76,6 +77,7 @@ export default function Projects(): JSX.Element {
         </div>
         <p className="basis-full text-justify">{tech.description}</p>
       </main>
+      <Footer />
     </>
   )
 }

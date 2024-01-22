@@ -7,6 +7,7 @@ import Roller from '@/components/Roller'
 import * as MaterialIcons from "react-icons/md"
 import Link from 'next/link'
 import Techs from '@/components/Techs'
+import Footer from '@/components/Footer'
 
 const texts = [
   {text: "Miguel Lopes Braido", style: "bg-green text-xl"},
@@ -73,6 +74,7 @@ export default function Home() {
       </h1>
       <Techs />
     </section>
+    <Footer />
   </>
   )
 }

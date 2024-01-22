@@ -2,6 +2,7 @@ import Head from 'next/head'
 
 import Book from "@/components/Book"
 import Header from "@/components/Header"
+import Footer from '@/components/Footer'
 
 export default function Books(): JSX.Element {
   return (
@@ -33,6 +34,7 @@ export default function Books(): JSX.Element {
           ]}
         />
       </main>
+      <Footer />
     </>
   )
 }
