@@ -2,7 +2,7 @@ import { withLogging } from "@/infra/middlewares"
 import RedirectDB from "@/infra/models/db/redirect"
 import { NotFoundRedirectError, UnauthorizedError } from "@/infra/models/responses"
 import withErrorInternal from "@/infra/utils/error"
-import { ErrorKV, ErrorKVCode } from "@/infra/utils/kv_schema"
+import { ErrorKV, ErrorKVCode } from "@/infra/utils/kv"
 import validToken from "@/infra/utils/valid_token"
 import { NextApiRequest, NextApiResponse } from "next"
 import { createRouter } from "next-connect"
@@ -19,7 +19,7 @@ async function getHandle(req: NextApiRequest, res: NextApiResponse) {
     return res.status(404).json(NotFoundRedirectError("null"))
 
   try {
-    res.status(200).json(await RedirectDB.get(id as string))
+    res.status(200).json(await RedirectDB.getById(id as string))
   } catch (error) {
     if(error instanceof ErrorKV)
       if(error.code === ErrorKVCode.NotFound)

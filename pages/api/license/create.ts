@@ -1,7 +1,6 @@
 import { withLogging } from "@/infra/middlewares"
-import { licenseSchema } from "@/infra/models"
 import LicenseDB from "@/infra/models/db/license"
-import { BadRequestInvalidBodyError, UnauthorizedError } from "@/infra/models/responses"
+import { UnauthorizedError } from "@/infra/models/responses"
 import withErrorInternal from "@/infra/utils/error"
 import ValidSchema from "@/infra/utils/valid_schema"
 import validToken from "@/infra/utils/valid_token"
@@ -15,12 +14,9 @@ const router = createRouter<NextApiRequest, NextApiResponse>()
 async function postHandler(req: NextApiRequest, res: NextApiResponse) {
   if(!validToken(req, res))
     return res.status(401).json(UnauthorizedError())
-  if(!ValidSchema(licenseSchema, req.body))
-    return res.status(400).json(BadRequestInvalidBodyError())
-
   try {
     const result = licenseSchema.parse(req.body)
-    return res.status(201).json(await LicenseDB.save(result))
+    return res.status(201).json(await LicenseDB.create(result))
   } catch (error) {
     withErrorInternal(error, req, res)
   }

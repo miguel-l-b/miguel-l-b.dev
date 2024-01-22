@@ -2,7 +2,7 @@ import { withLogging } from "@/infra/middlewares"
 import timelineDB from "@/infra/models/db/timeline"
 import { NotFoundTimelineError } from "@/infra/models/responses"
 import withErrorInternal from "@/infra/utils/error"
-import { ErrorKV, ErrorKVCode } from "@/infra/utils/kv_schema"
+import { ErrorKV, ErrorKVCode } from "@/infra/utils/kv"
 import { NextApiRequest, NextApiResponse } from "next"
 import { createRouter } from "next-connect"
 
@@ -18,7 +18,7 @@ async function getHandle(req: NextApiRequest, res: NextApiResponse) {
     return res.status(404).json(NotFoundTimelineError("null"))
 
   try {
-    return res.status(200).json(await timelineDB.get(id as string))
+    return res.status(200).json(await timelineDB.getById(id as string))
   } catch (error) {
     if(error instanceof ErrorKV)
       if(error.code === ErrorKVCode.NotFound)

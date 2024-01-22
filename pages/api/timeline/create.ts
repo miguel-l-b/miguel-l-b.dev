@@ -1,5 +1,5 @@
 import { withLogging } from "@/infra/middlewares"
-import { timelineSchema } from "@/infra/models"
+import { timelineSchema } from "@/infra/models/db/timeline"
 import timelineDB from "@/infra/models/db/timeline"
 import { BadRequestInvalidBodyError, UnauthorizedError } from "@/infra/models/responses"
 import withErrorInternal from "@/infra/utils/error"
@@ -20,7 +20,7 @@ async function postHandle(req: NextApiRequest, res: NextApiResponse) {
 
   try {
     const result = timelineSchema.parse(req.body)
-    await timelineDB.save(result)
+    await timelineDB.create(result)
     return res.status(200).json(result)
   } catch (error) {
     return withErrorInternal(error, req, res)

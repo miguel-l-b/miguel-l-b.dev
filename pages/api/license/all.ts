@@ -10,7 +10,7 @@ const router = createRouter<NextApiRequest, NextApiResponse>()
 
 async function getHandle(req: NextApiRequest, res: NextApiResponse) {
   try {
-    res.status(200).json(await LicenseDB.getAll())
+    res.status(200).json(await LicenseDB.find())
   } catch (error) {
     withErrorInternal(error, req, res)
   }
