@@ -15,8 +15,8 @@ async function postHandler(req: NextApiRequest, res: NextApiResponse) {
   if(!validToken(req, res))
     return res.status(401).json(UnauthorizedError())
   try {
-    const result = licenseSchema.parse(req.body)
-    return res.status(201).json(await LicenseDB.create(result))
+    // const result = licenseSchema.parse(req.body)
+    // return res.status(201).json(await LicenseDB.create(result))
   } catch (error) {
     withErrorInternal(error, req, res)
   }
