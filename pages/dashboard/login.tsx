@@ -1,3 +1,4 @@
+import Footer from "@/components/Footer"
 import Head from "next/head"
 import { useState } from "react"
 
@@ -30,7 +31,7 @@ export default function Login() {
       <title>Dashboard | Login</title>
       <meta name="description" content="Login" />
     </Head>
-    <form onChange={(e) => e.defaultPrevented}>
+    <form className="flex flex-col w-96 m-auto" onChange={(e) => e.preventDefault()}>
       <label htmlFor="password">Password</label>
       <input type="password" id="password" name="pass" onChange={(e) => setPass(e.target.value)} />
       <button type="submit" onChange={() => login(pass)}>Login</button>
