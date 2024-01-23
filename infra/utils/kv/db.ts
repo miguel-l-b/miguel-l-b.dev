@@ -21,15 +21,13 @@ export class KVModelDB<Type extends TypeData, idType> {
   }
 
   public async getById(id: idType, options?: SearchOptions): Promise<Type> {
-    const client = await redis
-    return await client.get(`${this.name}:${id}`)
+    return await redis.get<Type>(`${this.name}:${id}`)
       .then((data) => {
-        const result = JSON.parse(data!) as Type
-        if(!result)
+        if(!data)
           throw new ErrorKV("Not found", ErrorKVCode.NotFound)
         if(options?.populate)
-          return this.schema.populate<Type>(result)
-        return result as Type
+          return this.schema.populate<Type>(data)
+        return data as Type
       })
       .catch(() => {
         throw new ErrorKV("Error on get data", ErrorKVCode.Unknown)
@@ -37,17 +35,15 @@ export class KVModelDB<Type extends TypeData, idType> {
   }
 
   public async getAll(options?: SearchOptions): Promise<Type[]> {
-    const client = await redis
-    return await client.keys(`${this.name}:*`)
+    return await redis.keys(`${this.name}:*`)
       .then(async (keys) => {
-        const data = await client.mGet(keys)
+        const data = await redis.mget<Type[]>(keys)
 
         return await Promise.all(
-          data.map(async (value) => {
-            const data = JSON.parse(value!) as Type
-            // if(options?.populate)
-            //   return await this.schema.populate<Type>(data)
-            return data
+          data.map(async (e) => {
+            if(options?.populate)
+              return await this.schema.populate<Type>(e)
+            return e
           })
         )
       })
@@ -57,27 +53,25 @@ export class KVModelDB<Type extends TypeData, idType> {
   }
 
   public async create(data: Type): Promise<Type> {
-    const client = await redis
     let key: string
     if(!this.schema.exitKey)
       key = generateUUID()
     else {
       key = data[this.schema.getKey()]
-      if(await client.exists(`${this.name}:${key}`))
+      if(await redis.exists(`${this.name}:${key}`))
         throw new ErrorKV("Already exists", ErrorKVCode.AlreadyExists)
       delete data[this.schema.getKey()]
     }
 
-    await client.set(`${this.name}:${key}`, JSON.stringify(data))
+    await redis.set(`${this.name}:${key}`, JSON.stringify(data))
     return data
    }
 
   public async update(id: idType, data: Partial<Type>): Promise<Type> {
-    const client = await redis
 
     const oldData = await this.getById(id)
 
-    await client.set(`${this.name}:${id}`, JSON.stringify({...oldData, ...data}))
+    await redis.set(`${this.name}:${id}`, JSON.stringify({...oldData, ...data}))
     return {
       ...oldData,
       ...data
@@ -85,7 +79,6 @@ export class KVModelDB<Type extends TypeData, idType> {
   }
 
   public async delete(id: idType): Promise<void> {
-    const client = await redis
-    await client.del(`${this.name}:${id}`)
+    await redis.del(`${this.name}:${id}`)
   }
 }
