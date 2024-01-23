@@ -1,15 +1,5 @@
-import { createClient } from "redis"
+import { Redis } from "@upstash/redis"
 
-let redis = createClient({
-  url: process.env.REDIS_URL,
-})
+const redis = Redis.fromEnv()
 
-async function handleConnection() {
-  await redis.connect()
-  redis.on("error", (error) => {
-    console.error(error)
-  })
-  return redis
-}
-
-export default handleConnection()
+export default redis
