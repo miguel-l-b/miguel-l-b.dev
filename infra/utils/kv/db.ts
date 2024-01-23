@@ -52,6 +52,16 @@ export class KVModelDB<Type extends TypeData, idType> {
       })
   }
 
+  public async getKeys(): Promise<idType[]> {
+    return await redis.keys(`${this.name}:*`)
+      .then((keys) => {
+        return keys.map((e) => e.split(":")[1]) as idType[]
+      })
+      .catch(() => {
+        throw new ErrorKV("Error on get data", ErrorKVCode.Unknown)
+      })
+  }
+
   public async create(data: Type): Promise<Type> {
     let key: string
     if(!this.schema.exitKey)
