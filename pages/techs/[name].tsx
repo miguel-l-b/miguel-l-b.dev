@@ -6,8 +6,8 @@ import * as MaterialIcons from "react-icons/md"
 import Header from "@/components/Header"
 import { TechType } from "@/infra/models/db/tech"
 import Footer from "@/components/Footer"
-import Error from "next/error"
 import { GetServerSidePropsContext, GetServerSidePropsResult } from "next"
+import ErrorNotFound from "../404"
 
 type props = {
   errorCode?: number,
@@ -15,7 +15,7 @@ type props = {
 }
 
 export async function getServerSideProps({ req, query }: GetServerSidePropsContext): Promise<GetServerSidePropsResult<props>> {
-  const res = await fetch(`http://${process.env.VERCEL_URL}/api/techs/${query.name}`)
+  const res = await fetch(`http://${process.env.DOMAIN}/api/techs/${query.name}`)
   const errorCode = res.ok ? false : res.status
 
   if(errorCode != false)
@@ -30,7 +30,7 @@ export async function getServerSideProps({ req, query }: GetServerSidePropsConte
 
 export default function Projects({ errorCode, tech }: props) {
   if(errorCode)
-    return <Error statusCode={errorCode} />
+    return <ErrorNotFound />
 
   if(tech)
     return (
