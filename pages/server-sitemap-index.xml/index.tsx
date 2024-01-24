@@ -1,11 +1,11 @@
 import { getServerSideSitemapIndexLegacy } from 'next-sitemap'
 import { GetServerSideProps } from 'next'
-import { TechType } from '@/infra/models/db/tech'
+import getBaseUrl from '@/infra/utils/url'
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  const techs = await fetch(`https://${process.env.DOMAIN}/api/techs/keys`).then(async (e) => await e.json() as string[])
+  const techs = await fetch(`${getBaseUrl()}/api/techs/keys`).then(async (e) => await e.json() as string[])
   return getServerSideSitemapIndexLegacy(ctx, [
-    ...techs.flatMap(e => `https://${process.env.DOMAIN}/techs/${e}`)
+    ...techs.flatMap(e => `${getBaseUrl()}/techs/${e}`)
   ])
 }
 

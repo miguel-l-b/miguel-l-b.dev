@@ -8,6 +8,7 @@ import { TechType } from "@/infra/models/db/tech"
 import Footer from "@/components/Footer"
 import { GetServerSidePropsContext, GetServerSidePropsResult } from "next"
 import ErrorNotFound from "../404"
+import getBaseUrl from "@/infra/utils/url"
 
 type props = {
   errorCode?: number,
@@ -15,7 +16,7 @@ type props = {
 }
 
 export async function getServerSideProps({ req, query }: GetServerSidePropsContext): Promise<GetServerSidePropsResult<props>> {
-  const res = await fetch(`http://${process.env.DOMAIN}/api/techs/${query.name}`)
+  const res = await fetch(`${getBaseUrl()}/api/techs/${query.name}`)
   const errorCode = res.ok ? false : res.status
 
   if(errorCode != false)
