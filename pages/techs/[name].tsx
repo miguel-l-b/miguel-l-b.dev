@@ -78,6 +78,14 @@ export default function Projects({ errorCode, tech }: props) {
           </div>
           <p className="basis-full text-justify">{tech.description}</p>
         </main>
+        {/* <section id="projects" className="flex flex-col flex-wrap w-full gap-5 p-10 mt-20 bg-black-dark items-center">
+          <h1 className="basis-full">Projetos:</h1>
+          <div className="bg-gradient-to-tr to-gray-dark to-95% from-blue-dark p-2 rounded-md hover:scale-110">
+            <Image src="" className="w-48 bg-slate-500 rounded-md" width={1920} height={720} alt="thumb of" />
+            <h2>title</h2>
+            <h3>description</h3>
+          </div>
+        </section> */}
         <Footer />
       </>
     )
