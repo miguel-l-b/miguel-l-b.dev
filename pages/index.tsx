@@ -1,19 +1,14 @@
 import Image from 'next/image'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
+import * as MaterialIcons from "react-icons/md"
+
 import Header from '@/components/Header'
 import TimeLine from '@/components/timeline'
 import Roller from '@/components/Roller'
-import * as MaterialIcons from "react-icons/md"
 import Link from 'next/link'
 import Techs from '@/components/Techs'
 import Footer from '@/components/Footer'
-
-const texts = [
-  {text: "Miguel Lopes Braido", style: "bg-green text-xl"},
-  {text: "Desenvolvedor de Software", style: "bg-blue text-xl"},
-  {text: "Desenvolvedor FullStack", style: "bg-yellow text-xl"},
-]
 
 export default function Home() {
   const router = useRouter()
@@ -34,7 +29,11 @@ export default function Home() {
         alt="logo tipo"
       />
       <br />
-      <h1>Olá 🖖, eu sou <Roller values={texts} /></h1>
+      <h1>Olá 🖖, eu sou <Roller values={[
+          {text: "Miguel Lopes Braido", style: "bg-green text-xl"},
+          {text: "Desenvolvedor de Software", style: "bg-blue text-xl"},
+          {text: "Desenvolvedor FullStack", style: "bg-yellow text-xl"}
+      ]} /></h1>
       <button
         onClick={() => router.push("/cv.pdf")}
         className="m-auto flex items-center gap-5 border-blue border-4 text-blue font-bold rounded-full px-4 py-2 mt-10 hover:bg-blue-dark"
