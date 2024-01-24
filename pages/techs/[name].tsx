@@ -16,6 +16,7 @@ type props = {
 }
 
 export async function getServerSideProps({ req, query }: GetServerSidePropsContext): Promise<GetServerSidePropsResult<props>> {
+  console.log(getBaseUrl())
   const res = await fetch(`${getBaseUrl()}/api/techs/${query.name}`)
   const errorCode = res.ok ? false : res.status
 
