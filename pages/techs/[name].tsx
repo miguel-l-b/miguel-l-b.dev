@@ -31,9 +31,6 @@ export async function getServerSideProps({ req, query }: GetServerSidePropsConte
 }
 
 export default function Projects({ errorCode, tech }: props) {
-  if(errorCode)
-    return <ErrorNotFound />
-
   if(tech)
     return (
       <>
@@ -84,4 +81,6 @@ export default function Projects({ errorCode, tech }: props) {
         <Footer />
       </>
     )
+  if(errorCode)
+    return <ErrorNotFound />
 }
