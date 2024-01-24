@@ -1,6 +1,5 @@
 import { KVSchema, convertToSchema } from "@/infra/utils/kv"
 import { z } from "zod"
-import LicenseDB from "./license"
 
 const dbSchema = {
   img: {
@@ -13,6 +12,9 @@ const dbSchema = {
   },
   description: {
     type: z.string().min(1).max(2500),
+  },
+  category: {
+    type: z.string().min(1).max(15),
   },
   tags: {
     type: z.array(z.string())
