@@ -1,6 +1,7 @@
 import { ErrorKV, ErrorKVCode, KVSchema, ReferenceKey } from "."
 import redis from "@/infra/providers/redis"
 import generateUUID from "../uuid"
+import { CacheDB } from "./cache"
 
 interface TypeData {
   [key: string]: any
@@ -20,14 +21,25 @@ export class KVModelDB<Type extends TypeData, idType> {
     }
   }
 
+  private changeId(data: any, id: any): Type {
+    data[this.schema.getKey()] = id
+    return data
+  }
+
   public async getById(id: idType, options?: SearchOptions): Promise<Type> {
-    return await redis.get<Type>(`${this.name}:${id}`)
+    const findKey = `${this.name}:${id}`
+    const cache = CacheDB.getByKey<Type>(findKey)
+    if(cache)
+      return this.changeId(cache, id)
+    return await redis.get<Type>(findKey)
       .then((data) => {
         if(!data)
           throw new ErrorKV("Not found", ErrorKVCode.NotFound)
+        CacheDB.set(findKey, data)
+
         if(options?.populate)
-          return this.schema.populate<Type>(data)
-        return data as Type
+          return this.changeId(this.schema.populate<Type>(data), id)
+        return this.changeId(data, id)
       })
       .catch(() => {
         throw new ErrorKV("Error on get data", ErrorKVCode.Unknown)
@@ -41,9 +53,12 @@ export class KVModelDB<Type extends TypeData, idType> {
 
         return await Promise.all(
           data.map(async (e) => {
+            const id = e[this.schema.getKey()]
+            CacheDB.set(`${this.name}:${e[id]}`, e)
+
             if(options?.populate)
-              return await this.schema.populate<Type>(e)
-            return e
+              return this.changeId(await this.schema.populate<Type>(e), id)
+            return this.changeId(e, id)
           })
         )
       })
@@ -73,7 +88,9 @@ export class KVModelDB<Type extends TypeData, idType> {
       delete data[this.schema.getKey()]
     }
 
-    await redis.set(`${this.name}:${key}`, JSON.stringify(data))
+    CacheDB.set(`${this.name}:${key}`, data)
+    await redis.set(`${this.name}:${key}`, data)
+
     return data
    }
 
@@ -81,7 +98,8 @@ export class KVModelDB<Type extends TypeData, idType> {
 
     const oldData = await this.getById(id)
 
-    await redis.set(`${this.name}:${id}`, JSON.stringify({...oldData, ...data}))
+    CacheDB.set(`${this.name}:${id}`, {...oldData, ...data})
+    await redis.set(`${this.name}:${id}`, {...oldData, ...data})
     return {
       ...oldData,
       ...data
