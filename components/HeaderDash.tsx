@@ -6,8 +6,10 @@ export default function HeaderDash() {
       <Link href="/dashboard/techs">Tecnologias</Link>
       <Link href="/dashboard/timeline">Linha do Tempo</Link>
       <Link href="/dashboard/redirect">Redirecionamento</Link>
+      <Link href="/dashboard/books">Livros</Link>
+      <Link href="/dashboard/projects">Projetos</Link>
+      <Link href="/dashboard/posts">Posts</Link>
       <Link href="/dashboard/users">Usuários</Link>
-      <Link href="/dashboard/bd">Banco de Dados</Link>
     </header>
   )
 }
