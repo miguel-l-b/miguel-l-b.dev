@@ -15,7 +15,7 @@ type props = {
   tech?: TechType,
 }
 
-export async function getServerSideProps({ req, query }: GetServerSidePropsContext): Promise<GetServerSidePropsResult<props>> {
+export async function getServerSideProps({ query }: GetServerSidePropsContext): Promise<GetServerSidePropsResult<props>> {
   console.log(getBaseUrl())
   const res = await fetch(`${getBaseUrl()}/api/techs/${query.name}`)
   const errorCode = res.status >= 200 && res.status <= 399 ? false : res.status
