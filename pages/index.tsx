@@ -45,13 +45,13 @@ export default function Home() {
       <h1>🧑‍💻 Desenvolvendo aplicações Web e Mobile desde 2020</h1>
       <h1>
         🎓 Cursando Desenvolvimento de Sistemas pelo{" "}
-        <a
+        <Link
           className="animated-link"
           href="https://cotuca.unicamp.br/"
           target="_blank"
         >
           COTUCA - Unicamp
-        </a>
+        </Link>
       </h1>
       <h1>🧐 Estou de olho no Deno e Bun</h1>
       <h1>🚀 Buscando oportunidade de estágio</h1>
