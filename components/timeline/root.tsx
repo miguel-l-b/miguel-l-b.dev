@@ -37,7 +37,7 @@ export default function Root() {
           ))
         }
       </div>
-      <div className="bg-black w-full p-1 h-[40dvh] md:h-auto rounded-3xl text-center flex flex-col justify-center">
+      <div className="bg-black w-full p-4 h-[40dvh] md:h-auto rounded-3xl text-center flex flex-col justify-center">
         <h1>{content && content[indexActivate].title}</h1>
         <Markdown>{content && content[indexActivate].content}</Markdown>
       </div>
