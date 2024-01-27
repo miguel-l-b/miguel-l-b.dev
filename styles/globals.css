@@ -40,7 +40,19 @@ button {
 }
 
 input {
-  @apply rounded-full px-3 py-1 bg-black border-4 border-gray text-white;
+  @apply rounded-full w-full px-3 py-1 bg-black border-4 border-gray text-white;
+}
+
+textarea {
+  @apply rounded-md w-full px-3 py-1 bg-black border-4 border-gray text-white;
+}
+
+select {
+  @apply rounded-full w-full px-3 py-1 bg-black border-4 border-gray text-white;
+}
+
+option[hidden] {
+  @apply text-opacity-20;
 }
 
 body {
