@@ -1,0 +1,26 @@
+meta {
+  name: create
+  type: http
+  seq: 2
+}
+
+post {
+  url: http://localhost:3000/api/projects/create
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "slug": "my-portfolio",
+    "name": "miguellb.dev",
+    "img": "/img/logo.png",
+    "description": "a simple portfolio",
+    "tags": [
+      "my", "portifólio", "react"
+    ],
+    "techs": [
+      "Next.js", "React", "NodeJs", "Next.js", "Redis", "MongoDB"
+    ]
+  }
+}
