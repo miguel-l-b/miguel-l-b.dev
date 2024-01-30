@@ -6,7 +6,7 @@ const dbSchema = {
     type: z.string().url()
   },
   name: {
-    type: z.string().min(1).max(15),
+    type: z.string().min(1).max(20),
     index: true,
     unique: true
   },
@@ -17,7 +17,7 @@ const dbSchema = {
     type: z.array(z.object({
       logo: z.string().url(),
       url: z.string().url(),
-      isElectric: z.boolean()
+      isElectronic: z.boolean()
     }))
   }
 }
