@@ -1,6 +1,7 @@
+import connectionMongo from "@/infra/providers/mongodb"
 import mongoose from "mongoose"
 import { z } from "zod"
-
+connectionMongo()
 const ProjectSchema = new mongoose.Schema({
   slug: {
     type: String,
@@ -37,7 +38,7 @@ const ProjectSchema = new mongoose.Schema({
 }, { _id: false })
   .index({ slug: 1 })
 
-const projectSchema = z.object({
+export const projectSchema = z.object({
   slug: z.string(),
   img: z.string().url(),
   name: z.string(),
@@ -45,10 +46,10 @@ const projectSchema = z.object({
   tags: z.array(z.string()),
   license: z.string(),
   techs: z.array(z.string()),
-  github: z.string().url(),
-  demo_url: z.string().url(),
+  github: z.optional(z.string().url()),
+  demo_url: z.optional(z.string().url()),
 })
 export type ProjectType = z.infer<typeof projectSchema>
 
-const ProjectDB = mongoose.model("project", ProjectSchema)
+const ProjectDB = mongoose.model("projects", ProjectSchema)
 export default ProjectDB
