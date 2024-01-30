@@ -1,19 +1,9 @@
+import { BookType } from '@/infra/models/db/book'
 import Image from 'next/image'
 import { useState } from 'react'
 import * as MaterialIcons from "react-icons/md"
 
-interface BookProps {
-  img: string
-  name: string
-  why: string
-  buy: Array<{
-    logo: string
-    url: string
-    isElectronic: boolean
-  }>
-}
-
-export default function Book(props: BookProps): JSX.Element {
+export default function Book(props: BookType): JSX.Element {
   const [isOpenedMore, setIsOpenedMore] = useState<boolean>(false)
   const [physical, electronic] = [
     props.buy.filter((e) => !e.isElectronic),
@@ -37,7 +27,7 @@ export default function Book(props: BookProps): JSX.Element {
           Por que Ler?
           <MaterialIcons.MdExpandCircleDown  className={`sm:hidden transition-all duration-500 ${isOpenedMore ? "rotate-180 " : "rotate-0"}`} />
         </h3>
-        <p className={`text-md text-gray font-jura sm:block ${!isOpenedMore && "hidden"}`}>{props.why}</p>
+        <p className={`text-md text-gray font-jura sm:block transition-all duration-200 ease-in ${!isOpenedMore && "h-0 content-none opacity-0"}`}>{props.why}</p>
         <br />
         <div className="flex gap-4">
           <h3 className="text-lg">Links de onde Comprar:</h3>
