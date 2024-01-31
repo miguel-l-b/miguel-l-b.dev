@@ -6,6 +6,7 @@ import Footer from '@/components/Footer'
 import { GetServerSidePropsResult } from 'next'
 import { BookType } from '@/infra/models/db/book'
 import getBaseUrl from '@/infra/utils/url'
+import Share from '@/components/Share'
 
 type props = {
   books: Array<BookType>,
@@ -39,7 +40,10 @@ export default function Books({ books }: props): JSX.Element {
       <main className="flex flex-col gap-20">
         {
           books?.map((props, index) => (
-            <Book key={index} {...props} />
+            <section id={props.name} key={index}>
+              <Book {...props} />
+              <Share className="mx-auto mt-10" urlAdditional={`#${props.name}`} />
+            </section>
           ))
         }
       </main>

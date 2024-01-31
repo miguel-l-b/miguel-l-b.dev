@@ -9,6 +9,7 @@ import Roller from '@/components/Roller'
 import Link from 'next/link'
 import Techs from '@/components/Techs'
 import Footer from '@/components/Footer'
+import Share from '@/components/Share'
 
 export default function Home() {
   const router = useRouter()
@@ -40,6 +41,7 @@ export default function Home() {
       >
         Ver meu CV <MaterialIcons.MdOutlineFileDownload className='text-2xl' />
       </button>
+      <Share className="mx-auto mt-8" />
       <br />
       <br />
       <h1>🧑‍💻 Desenvolvendo aplicações Web e Mobile desde 2020</h1>

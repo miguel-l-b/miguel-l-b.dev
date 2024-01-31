@@ -9,6 +9,7 @@ import Footer from "@/components/Footer"
 import { GetServerSidePropsContext, GetServerSidePropsResult } from "next"
 import ErrorNotFound from "../404"
 import getBaseUrl from "@/infra/utils/url"
+import Share from "@/components/Share"
 
 type props = {
   errorCode?: number,
@@ -54,7 +55,8 @@ export default function Projects({ errorCode, tech }: props) {
               ))
             }
           </div>
-          <div className="flex gap-5">
+          <div className="flex gap-5 items-center">
+            <Share message={`Venha entender um pouco mais sobre o ${tech.name}`} />
             {
               tech.github && (
                 <Link className="bg-white rounded-full" href={tech.github} target="_blank">

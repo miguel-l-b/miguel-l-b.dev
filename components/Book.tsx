@@ -1,11 +1,11 @@
-import { BookType } from '@/infra/models/db/book'
 import Image from 'next/image'
-import { useSearchParams } from 'next/navigation'
 import { useState } from 'react'
 import * as MaterialIcons from "react-icons/md"
+import Markdown from 'react-markdown'
+
+import { BookType } from '@/infra/models/db/book'
 
 export default function Book(props: BookType): JSX.Element {
-  const params = useSearchParams()
   const [isOpenedMore, setIsOpenedMore] = useState<boolean>(false)
   const [physical, electronic] = [
     props.buy.filter((e) => !e.isElectronic),
@@ -29,7 +29,14 @@ export default function Book(props: BookType): JSX.Element {
           Por que Ler?
           <MaterialIcons.MdExpandCircleDown  className={`sm:hidden transition-all duration-500 ${isOpenedMore ? "rotate-180 " : "rotate-0"}`} />
         </h3>
-        <p className={`text-md text-gray font-jura sm:opacity-100 sm:h-auto transition-all duration-200 ease-in ${!isOpenedMore && "h-0 opacity-0"} `}>{props.why}</p>
+        <Markdown
+          className={`
+            text-md text-gray font-jura sm:opacity-100 sm:h-auto transition-all duration-200 ease-in
+            ${!isOpenedMore && "h-0 opacity-0"}
+          `}
+        >
+          {props.why}
+        </Markdown>
         <br />
         <div className="flex gap-4">
           <h3 className="text-lg">Links de onde Comprar:</h3>
