@@ -12,7 +12,7 @@ export default function Curse(): JSX.Element {
     window.addEventListener("touchstart", checkTouchDevice)
 
     window.addEventListener("click", () => {
-      document.getElementById("cursor-dot")!.animate(
+      document.getElementById("cursor-dot")?.animate(
         {
           width: "5rem",
           height: "5rem",
@@ -24,7 +24,7 @@ export default function Curse(): JSX.Element {
       )
 
       setTimeout(() => {
-        document.getElementById("cursor-dot")!.animate(
+        document.getElementById("cursor-dot")?.animate(
           {
             width: "1.75rem",
             height: "1.75rem",
