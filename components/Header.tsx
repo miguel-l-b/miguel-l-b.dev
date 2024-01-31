@@ -59,13 +59,6 @@ export default function Header(props: HeaderProps): JSX.Element {
         <HeaderLink path="/books" clicked={props.path === "/books"}>
           Livros
         </HeaderLink>
-        {/* <HeaderLink path="/projects" clicked={props.path === "/projects"}>
-          Projetos
-        </HeaderLink> */}
-
-
-
-
       </ul>
     </nav>
     <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="fixed top-0 p-2 m-4 bg-gradient-to-tr from-gray-dark from-[20%] to-[160%] rounded-xl to-gray-light z-40 md:hidden">
@@ -88,9 +81,6 @@ export default function Header(props: HeaderProps): JSX.Element {
         <HeaderLink path="/books" clicked={props.path === "/books"}>
           Livros
         </HeaderLink>
-        {/* <HeaderLink path="/projects" clicked={props.path === "/projects"}>
-          Projetos
-        </HeaderLink> */}
       </ul>
     </nav>
     <div className="w-full h-20 md:hidden" />
