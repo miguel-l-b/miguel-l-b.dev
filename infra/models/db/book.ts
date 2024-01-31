@@ -7,8 +7,7 @@ const dbSchema = {
   },
   name: {
     type: z.string().min(1).max(20),
-    index: true,
-    unique: true
+    index: true
   },
   why: {
     type: z.string().min(1).max(2500),

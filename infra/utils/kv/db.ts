@@ -47,24 +47,9 @@ export class KVModelDB<Type extends TypeData, idType> {
   }
 
   public async getAll(options?: SearchOptions): Promise<Type[]> {
-    return await redis.keys(`${this.name}:*`)
-      .then(async (keys) => {
-        const data = await redis.mget<Type[]>(keys)
-
-        return await Promise.all(
-          data.map(async (e) => {
-            const id = e[this.schema.getKey()]
-            CacheDB.set(`${this.name}:${e[id]}`, e)
-
-            if(options?.populate)
-              return this.changeId(await this.schema.populate<Type>(e), id)
-            return this.changeId(e, id)
-          })
-        )
-      })
-      .catch(() => {
-        throw new ErrorKV("Error on get data", ErrorKVCode.Unknown)
-      })
+    const keys = await this.getKeys()
+    const data = await Promise.all(keys.map((key) => this.getById(key, options)))
+    return data
   }
 
   public async getKeys(): Promise<idType[]> {
