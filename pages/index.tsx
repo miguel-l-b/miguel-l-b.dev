@@ -59,19 +59,19 @@ export default function Home() {
         <MaterialIcons.MdOutlineDownloading  className="m-auto mt-20 text-5xl animate-bounce" />
       </Link>
     </main>
-    <section id="timeline" className="flex flex-col justify-center mt-40 py-20 bg-black-dark w-full min-h-screen rounded-md">
-      <h1 className="text-center text-2xl font-orbitron font-extrabold text-gray-light mb-10">
-        <Link href="#timeline">Linha do Tempo</Link>
-      </h1>
-      <TimeLine.root />
-    </section>
-    <section id="techs" className="flex flex-col gap-20 justify-center items-center min-h-[50dvh]">
+    <section id="techs" className="flex flex-col justify-center items-center gap-20 mt-40 w-full min-h-screen bg-black-dark">
       <h1 className="text-2xl text-center mt-10 basis-full">
         <Link href="#techs">
           Tecnologias que utilizo e estudo
         </Link>
       </h1>
       <Techs />
+    </section>
+    <section id="timeline" className="flex flex-col justify-center py-20 min-h-[50dvh] rounded-md">
+      <h1 className="text-center text-2xl font-orbitron font-extrabold text-gray-light mb-10">
+        <Link href="#timeline">Linha do Tempo</Link>
+      </h1>
+      <TimeLine.root />
     </section>
     <Footer />
   </>
