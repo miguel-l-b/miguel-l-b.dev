@@ -6,6 +6,7 @@ import { SpeedInsights } from '@vercel/speed-insights/next'
 import Head from 'next/head'
 
 import Curse from '@/components/Curse'
+import Building from '@/components/Building'
 import '@/styles/globals.css'
 import Footer from '@/components/Footer'
 export default function App({ Component, pageProps }: AppProps) {
@@ -21,6 +22,7 @@ export default function App({ Component, pageProps }: AppProps) {
         />
       </Head>
       <div className="min-h-screen flex flex-col justify-between">
+        <Building />
         <Curse />
         <Component {...pageProps} />
       </div>

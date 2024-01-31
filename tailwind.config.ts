@@ -24,6 +24,7 @@ const config: Config = {
         "blue-dark": "#2F4572",
         "blue": "#679EDE",
         "blue-light": "#BED7E4",
+        "yellow-dark": "#E3B81B",
         "yellow": "#EDDE73",
         "yellow-light": "#E1DDB7",
         "green": "#23AC57",
@@ -31,6 +32,25 @@ const config: Config = {
         "red": "#D24F4F",
         "red-light": "#C97878",
         "white": "#E6EEEF",
+      },
+      keyframes: {
+        attention: {
+          "0%": {
+            transform: "rotate(0deg)",
+          },
+          "50%": {
+            transform: "rotate(2deg)",
+          },
+          "90%": {
+            transform: "rotate(-3deg)",
+          },
+          "100%": {
+            transform: "rotate(1deg)",
+          }
+        }
+      },
+      animation: {
+        attention: "attention 1s ease-in-out infinite",
       }
     },
   },
