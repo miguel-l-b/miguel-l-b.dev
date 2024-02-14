@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import * as MaterialIcons from "react-icons/md"
+import { FiChevronsDown, FiDownload, FiMapPin } from 'react-icons/fi'
 
 import Header from '@/components/Header'
 import TimeLine from '@/components/timeline'
@@ -39,10 +39,13 @@ export default function Home() {
         onClick={() => router.push("/cv.pdf")}
         className="m-auto flex items-center gap-5 border-blue border-4 text-blue font-bold rounded-full px-4 py-2 mt-10 hover:bg-blue-dark"
       >
-        Ver meu CV <MaterialIcons.MdOutlineFileDownload className='text-2xl' />
+        Ver meu CV <FiDownload className='text-2xl' />
       </button>
       <Share className="mx-auto mt-8" />
       <br />
+      <h1>
+        <FiMapPin className="inline-block" /> Campinas, SP
+      </h1>
       <br />
       <h1>🧑‍💻 Desenvolvendo aplicações Web e Mobile desde 2020</h1>
       <h1>
@@ -58,7 +61,7 @@ export default function Home() {
       <h1>🧐 Estou de olho no Deno e Bun</h1>
       <h1>🚀 Buscando oportunidade de estágio</h1>
       <Link href="#timeline">
-        <MaterialIcons.MdOutlineDownloading  className="m-auto mt-20 text-5xl animate-bounce" />
+        <FiChevronsDown className="m-auto mt-20 text-5xl animate-bounce" />
       </Link>
     </main>
     <section id="techs" className="flex flex-col justify-center items-center gap-20 mt-40 w-full min-h-screen bg-black-dark">

@@ -1,7 +1,7 @@
 'use client'
 import getBaseUrl from "@/infra/utils/url"
 import { useRouter } from "next/router"
-import { MdShare } from "react-icons/md"
+import { FiShare2 } from "react-icons/fi"
 
 type componentProps = {
   urlAlternative?: string
@@ -13,21 +13,22 @@ type componentProps = {
 export default function Share({ urlAlternative, urlAdditional, message, className }: componentProps) {
   const router = useRouter()
   const url = urlAlternative || `${getBaseUrl()}${router.asPath}${urlAdditional || ""}`
+  const text = message || "Confira esse conteúdo de Miguel L. B.!"
 
   function share() {
     if(navigator.share) {
       navigator.share({
         title: document.title,
-        text: "Miguel L B | Desenvolvedor FullStack" || message,
+        text: text,
         url: url,
       })
     } else {
-      navigator.clipboard.writeText(url)
+      navigator.clipboard.writeText(`${text}\n${url}`)
     }
   }
   return (
     <button onClick={share} className={`flex items-center group ${className}`}>
-      <MdShare className={`ml-5 bg-blue text-white p-2 rounded-xl`} size={50} />
+      <FiShare2 className={`ml-5 bg-blue text-white p-2 rounded-xl`} size={50} />
       <p
         className={`
           px-5 py-0.5 rounded-r-xl

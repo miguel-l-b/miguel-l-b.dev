@@ -1,7 +1,6 @@
 import Head from "next/head"
 import Image from "next/image"
 import Link from "next/link"
-import * as MaterialIcons from "react-icons/md"
 
 import Header from "@/components/Header"
 import { TechType } from "@/infra/models/db/tech"
@@ -10,6 +9,7 @@ import { GetServerSidePropsContext, GetServerSidePropsResult } from "next"
 import ErrorNotFound from "../404"
 import getBaseUrl from "@/infra/utils/url"
 import Share from "@/components/Share"
+import { FiGithub, FiLink2 } from "react-icons/fi"
 
 type props = {
   errorCode?: number,
@@ -59,20 +59,15 @@ export default function Projects({ errorCode, tech }: props) {
             <Share message={`Venha entender um pouco mais sobre o ${tech.name}`} />
             {
               tech.github && (
-                <Link className="bg-white rounded-full" href={tech.github} target="_blank">
-                  <Image
-                    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg"
-                    width={30}
-                    height={30}
-                    alt="github icon"
-                  />
+                <Link className="text-2xl link" href={tech.github} target="_blank">
+                  <FiGithub />
                 </Link>
               )
             }
             {
               tech.site && (
-                <Link href={tech.site} target="_blank">
-                  <MaterialIcons.MdLink className="text-gray" size={30} />
+                <Link className="text-2xl link" href={tech.site} target="_blank">
+                  <FiLink2 />
                 </Link>
               )
             }
