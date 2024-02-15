@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import { FiChevronsDown, FiDownload, FiMapPin } from 'react-icons/fi'
+import { FiChevronsDown, FiDownload, FiLink2, FiMapPin } from 'react-icons/fi'
 
 import Header from '@/components/Header'
 import TimeLine from '@/components/timeline'
@@ -71,6 +71,12 @@ export default function Home() {
         </Link>
       </h1>
       <Techs />
+      <p>
+        <FiLink2 className="inline-block" /> {" "}
+        <Link className="animated-link w-full text-xl" href="/techs">
+          ver mais
+        </Link>
+      </p>
     </section>
     <section id="timeline" className="flex flex-col justify-center py-20 min-h-[50dvh] rounded-md">
       <h1 className="text-center text-2xl font-orbitron font-extrabold text-gray-light mb-10">
