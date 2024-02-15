@@ -1,7 +1,6 @@
 import connectionMongo from "@/infra/providers/mongodb"
-import mongoose from "mongoose"
 import { z } from "zod"
-connectionMongo()
+const mongoose = connectionMongo()
 const ProjectSchema = new mongoose.Schema({
   slug: {
     type: String,
@@ -35,7 +34,7 @@ const ProjectSchema = new mongoose.Schema({
   },
   github: String,
   demo_url: String,
-}, { _id: false })
+})
   .index({ slug: 1 })
 
 export const projectSchema = z.object({

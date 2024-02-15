@@ -1,8 +1,9 @@
 import { withLogging } from "@/infra/middlewares"
 import TechDB from "@/infra/models/db/tech"
-import { NotFoundTechError } from "@/infra/models/responses"
+import { NotFoundTechError, UnauthorizedError } from "@/infra/models/responses"
 import withErrorInternal from "@/infra/utils/error"
 import { ErrorKV, ErrorKVCode } from "@/infra/utils/kv"
+import validToken from "@/infra/utils/valid_token"
 import { NextApiRequest, NextApiResponse } from "next"
 import { createRouter } from "next-connect"
 
@@ -32,6 +33,9 @@ async function getHandle(req: NextApiRequest, res: NextApiResponse) {
 async function deleteHandle(req: NextApiRequest, res: NextApiResponse) {
   const { id } = req.query
 
+  if(!validToken(req, res))
+    return res.status(401).json(UnauthorizedError())
+
   if (!id)
     return res.status(404).json(NotFoundTechError("null"))
 
@@ -49,6 +53,9 @@ async function deleteHandle(req: NextApiRequest, res: NextApiResponse) {
 
 async function putHandle(req: NextApiRequest, res: NextApiResponse) {
   const { id } = req.query
+
+  if(!validToken(req, res))
+    return res.status(401).json(UnauthorizedError())
 
   if (!id)
     return res.status(404).json(NotFoundTechError("null"))
