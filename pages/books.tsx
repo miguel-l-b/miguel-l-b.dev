@@ -42,10 +42,10 @@ export default function Books({ books }: props): JSX.Element {
           books?.map((props, index) => (
             <section id={props.name} key={index}>
               <Book {...props} />
-              <Share className="mx-auto mt-10" urlAdditional={`#${props.name}`} />
             </section>
           ))
         }
+        <Share className="mx-auto mt-10" />
       </main>
       <Footer />
     </>
