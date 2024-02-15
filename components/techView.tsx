@@ -3,13 +3,13 @@ import Link from "next/link"
 import Image from "next/image"
 
 export interface techViewProps {
-  content: TechType & { id: string }
+  content: TechType
 }
 
 export default function TechView({ content }: techViewProps) {
   return(
     <Link
-      className="flex flex-col relative transition-all delay-200 duration-200 items-center rounded-lg hover:rounded-t-xl bg-blue bg-opacity-15 hover:scale-150 justify-center p-2 group"
+      className="flex flex-col relative w-fit transition-all delay-200 duration-200 items-center rounded-lg hover:rounded-t-xl bg-blue bg-opacity-15 hover:scale-150 justify-center p-2 group"
       href={`/techs/${content.name}`}
     >
       <Image

@@ -47,10 +47,27 @@ const config: Config = {
           "100%": {
             transform: "rotate(1deg)",
           }
+        },
+        custom_two: {
+          "0%": {
+            opacity: "0.6",
+          },
+
+          "30%": {
+            opacity: "1",
+            transform: "translateX(0.4rem)",
+          },
+          "70%": {
+            transform: "translateX(-0.4rem)",
+          },
+          "100%": {
+            opacity: "0.6",
+          }
         }
       },
       animation: {
         attention: "attention 1s ease-in-out infinite",
+        custom_two: "custom_two 1.5s ease-in-out infinite",
       }
     },
   },

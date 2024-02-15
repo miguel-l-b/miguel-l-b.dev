@@ -94,3 +94,17 @@ h1 {
   -webkit-transform: scaleX(1);
   transform: scaleX(1);
 }
+
+[type="search"]::-webkit-search-cancel-button,
+[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+input {
+  @apply outline-none focus:ring-4 focus:ring-blue;
+}
+
+.link {
+  @apply transition-all duration-500 text-blue-light hover:text-green-light hover:underline;
+}
