@@ -12,7 +12,11 @@ html {
 }
 
 * {
-  @apply cursor-none;
+  @apply cursor-none selection:text-black-light selection:bg-blue;
+}
+
+body {
+  @apply overflow-x-hidden;
 }
 
 body::-webkit-scrollbar {
