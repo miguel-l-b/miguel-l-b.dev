@@ -1,5 +1,5 @@
-import Link from 'next/link'
-import { FiGithub, FiLinkedin, FiMail } from 'react-icons/fi'
+import Link from "next/link";
+import { FiGithub, FiLinkedin, FiMail } from "react-icons/fi";
 
 export default function Footer() {
   return (
@@ -12,21 +12,21 @@ export default function Footer() {
     >
       <div className="flex gap-5 text-2xl">
         <Link
-          className="link"
+          className="link course_circle"
           href="https://github.com/miguel-l-b"
           target="_blank"
         >
           <FiGithub />
         </Link>
         <Link
-          className="link"
+          className="link course_circle"
           href="https://www.linkedin.com/in/miguel-lb/"
           target="_blank"
         >
           <FiLinkedin />
         </Link>
         <Link
-          className="link"
+          className="link course_circle"
           href="mailto:miguellopesbraido@gmail.com"
           target="_blank"
         >
@@ -34,8 +34,8 @@ export default function Footer() {
         </Link>
       </div>
       <h1 className="text-gray-light text-xl">
-        Feito por Miguel Lopes Braido © 2023-{new Date().getFullYear()}
+        Feito por Miguel Lopes Braido © {new Date().getFullYear()}
       </h1>
     </footer>
-  )
+  );
 }
