@@ -8,7 +8,7 @@ export default function Paginate() {
   const pages = Array.from({ length: Math.ceil(content.length / limitPerPage) })
 
   return (
-    <div className={`fixed flex z-10 bottom-14 right-14 rounded-lg py-3 bg-black-dark`}>
+    <div className={`fixed flex z-10 bottom-14 right-7 rounded-lg py-3 bg-black-dark`}>
       <button
         className="px-4 py-2 hover:text-green-light"
         onClick={() => setPage(page - 1)}
