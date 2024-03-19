@@ -12,7 +12,6 @@ import Link from "next/link";
 import ListViewController from "@/components/list-view";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
-import Form from "@/components/form";
 
 export interface props {
   techs: TechType[];
@@ -41,6 +40,7 @@ export async function getServerSideProps(): Promise<
 
 export default function Projects({ techs }: props): JSX.Element {
   const router = useRouter();
+
   const params = useSearchParams();
   const [techsFiltered, setTechsFiltered] = useState<TechType[]>(techs);
 
@@ -74,16 +74,43 @@ export default function Projects({ techs }: props): JSX.Element {
       <main className="w-80 lg:w-1/3 mx-auto">
         <h1 className="text-center mt-20">Tecnologias</h1>
         <br />
-        <Form.root saveInUrl className="flex gap-5">
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+
+            const { firstChild, firstElementChild, ...elements } =
+              e.currentTarget;
+
+            const inputs: { key: string; value: any }[] = [];
+            for (const key in e.currentTarget) {
+              if (key === "firstChild") continue;
+              const element = e.currentTarget[key];
+              if (
+                element instanceof HTMLInputElement ||
+                element instanceof HTMLTextAreaElement ||
+                element instanceof HTMLSelectElement
+              )
+                inputs.push({ key, value: element.value });
+            }
+
+            router.push(
+              window.location.pathname +
+                "?" +
+                inputs.map((input) => `${input.key}=${input.value}`).join("&")
+            );
+          }}
+          className="flex gap-5"
+        >
           <input
             className="bg-white text-black-dark border-none shadow-xl"
             type="search"
-            name="search"
+            name={"search"}
+            defaultValue={params.get("search") || ""}
           />
           <button type="submit" className="bg-blue px-4 rounded-xl font-bold">
             buscar
           </button>
-        </Form.root>
+        </form>
       </main>
       <ListViewController
         className="flex flex-col justify-center gap-20 w-fit p-14 mx-auto"
