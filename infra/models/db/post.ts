@@ -38,5 +38,11 @@ PostSchema.pre("save", function (next) {
   next()
 });
 
-const PostDB = mongoose.model("post", PostSchema)
+function HandleModel() {
+  if (mongoose.models.posts) {
+    return mongoose.model("posts")
+  }
+  return mongoose.model("posts", PostSchema)
+}
+const PostDB = HandleModel()
 export default PostDB
