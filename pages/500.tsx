@@ -1,5 +1,5 @@
-import Head from "next/head"
-import Link from "next/link"
+import Head from "next/head";
+import Link from "next/link";
 
 export default function InternalServerError(): JSX.Element {
   return (
@@ -11,11 +11,15 @@ export default function InternalServerError(): JSX.Element {
         <h1 className="text-5xl font-bold font-jura">500</h1>
         <h1 className="text-2xl">
           Erro interno do servidor, volte para a{" "}
-          <Link href="/" className="animated-link">
+          <Link
+            href="/"
+            className="animated-link"
+            aria-label="Ir para a página inicial"
+          >
             página inicial
           </Link>
         </h1>
       </main>
     </>
-  )
+  );
 }
