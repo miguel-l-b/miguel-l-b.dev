@@ -1,5 +1,5 @@
-import Link from 'next/link'
-import { FiGithub, FiLinkedin, FiMail } from 'react-icons/fi'
+import Link from "next/link";
+import { FiGithub, FiLinkedin, FiMail } from "react-icons/fi";
 
 export default function Footer() {
   return (
@@ -15,6 +15,7 @@ export default function Footer() {
           className="link"
           href="https://github.com/miguel-l-b"
           target="_blank"
+          aria-label="Ir para GitHub"
         >
           <FiGithub />
         </Link>
@@ -22,6 +23,7 @@ export default function Footer() {
           className="link"
           href="https://www.linkedin.com/in/miguel-lb/"
           target="_blank"
+          aria-label="Ir para LinkedIn"
         >
           <FiLinkedin />
         </Link>
@@ -29,6 +31,7 @@ export default function Footer() {
           className="link"
           href="mailto:miguellopesbraido@gmail.com"
           target="_blank"
+          aria-label="Enviar um e-mail"
         >
           <FiMail />
         </Link>
@@ -37,5 +40,5 @@ export default function Footer() {
         Feito por Miguel Lopes Braido © 2023-{new Date().getFullYear()}
       </h1>
     </footer>
-  )
+  );
 }
