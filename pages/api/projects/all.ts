@@ -10,7 +10,7 @@ const router = createRouter<NextApiRequest, NextApiResponse>()
   .get(getHandler)
 
 async function getHandler(req: NextApiRequest, res: NextApiResponse) {
-  return res.status(200).json(await ProjectDB.find())
+  return res.status(200).json(await ProjectDB.find());
 }
 
 export default router.handler({ onError: withErrorInternal })

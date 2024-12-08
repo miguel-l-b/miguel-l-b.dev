@@ -1,7 +1,7 @@
-import connectionMongo from "@/infra/providers/mongodb"
+import MongoClient from "@/infra/providers/mongodb"
 import { z } from "zod"
 
-const mongoose = connectionMongo()
+const mongoose = MongoClient.connect()
 const ProjectSchemaMongo = new mongoose.Schema({
   slug: {
     type: String,
@@ -51,11 +51,6 @@ export const projectSchema = z.object({
 })
 export type ProjectType = z.infer<typeof projectSchema>
 
-function HandleModel() {
-  if (mongoose.models.projects)
-    return mongoose.model("projects")
-  return mongoose.model("projects", ProjectSchemaMongo)
-}
-const ProjectDB = HandleModel()
+const ProjectDB = mongoose.model("projects", ProjectSchemaMongo)
 
 export default ProjectDB
