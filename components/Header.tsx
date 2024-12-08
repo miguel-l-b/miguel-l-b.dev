@@ -45,7 +45,7 @@ export default function Header(props: HeaderProps): JSX.Element {
     <>
       <nav className="p-10 items-center justify-center hidden md:flex">
         {props.path !== "/" ? (
-          <Link href="/" aria-label="Ir para Home do site">
+          <Link href="/">
             <Image
               className="w-24 h-24 fixed left-[5dvw] top-[1.5rem]"
               src="/img/logo-polygon.svg"
@@ -60,6 +60,9 @@ export default function Header(props: HeaderProps): JSX.Element {
         <ul className="flex gap-20 justify-center bg-black-light w-[65dvw] h-14 rounded-full shadow-sm shadow-black-dark">
           <HeaderLink path="/books" clicked={props.path === "/books"}>
             Livros
+          </HeaderLink>
+          <HeaderLink path="/projects" clicked={props.path === "/projects"}>
+            Projetos
           </HeaderLink>
         </ul>
       </nav>
@@ -81,7 +84,7 @@ export default function Header(props: HeaderProps): JSX.Element {
         } p-5 h-dvh bg-black rounded-r-[4rem] z-50 md:hidden`}
       >
         {props.path !== "/" && (
-          <Link href="/" aria-label="Ir para Home do site">
+          <Link href="/">
             <Image
               className="w-24 h-24 m-auto left-[5vw] top-[1.5rem]"
               src="/img/logo-polygon.svg"
@@ -94,6 +97,9 @@ export default function Header(props: HeaderProps): JSX.Element {
         <ul className="mt-24 h-full flex flex-col gap-5">
           <HeaderLink path="/books" clicked={props.path === "/books"}>
             Livros
+          </HeaderLink>
+          <HeaderLink path="/projects" clicked={props.path === "/projects"}>
+            Projetos
           </HeaderLink>
         </ul>
       </nav>

@@ -13,7 +13,6 @@ import Share from "@/components/Share";
 
 export default function Home() {
   const router = useRouter();
-  const router = useRouter();
 
   return (
     <>
