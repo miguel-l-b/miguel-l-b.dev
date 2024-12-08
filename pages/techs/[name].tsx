@@ -1,37 +1,38 @@
-import Head from "next/head"
-import Image from "next/image"
-import Link from "next/link"
+import Head from "next/head";
+import Image from "next/image";
+import Link from "next/link";
 
-import Header from "@/components/Header"
-import { TechType } from "@/infra/models/db/tech"
-import Footer from "@/components/Footer"
-import { GetServerSidePropsContext, GetServerSidePropsResult } from "next"
-import ErrorNotFound from "../404"
-import getBaseUrl from "@/infra/utils/url"
-import Share from "@/components/Share"
-import { FiGithub, FiLink2 } from "react-icons/fi"
+import Header from "@/components/Header";
+import { TechType } from "@/infra/models/db/tech";
+import Footer from "@/components/Footer";
+import { GetServerSidePropsContext, GetServerSidePropsResult } from "next";
+import ErrorNotFound from "../404";
+import getBaseUrl from "@/infra/utils/url";
+import Share from "@/components/Share";
+import { FiGithub, FiLink2 } from "react-icons/fi";
 
 type props = {
-  errorCode?: number,
-  tech?: TechType,
-}
+  errorCode?: number;
+  tech?: TechType;
+};
 
-export async function getServerSideProps({ query }: GetServerSidePropsContext): Promise<GetServerSidePropsResult<props>> {
-  const res = await fetch(`${getBaseUrl()}/api/techs/${query.name}`)
-  const errorCode = res.status >= 200 && res.status <= 399 ? false : res.status
+export async function getServerSideProps({
+  query,
+}: GetServerSidePropsContext): Promise<GetServerSidePropsResult<props>> {
+  const res = await fetch(`${getBaseUrl()}/api/techs/${query.name}`);
+  const errorCode = res.status >= 200 && res.status <= 399 ? false : res.status;
 
-  if(errorCode != false)
-    return { props: { errorCode } }
+  if (errorCode != false) return { props: { errorCode } };
 
-  const tech = await res.json()
+  const tech = await res.json();
 
   return {
     props: { tech },
-  }
+  };
 }
 
 export default function Projects({ errorCode, tech }: props) {
-  if(tech)
+  if (tech)
     return (
       <>
         <Head>
@@ -41,36 +42,47 @@ export default function Projects({ errorCode, tech }: props) {
         <Header path="/techs" />
         <main className="flex flex-wrap items-center m-auto w-[65dvw] gap-12">
           <Image
-              className="p-4 rounded-2xl bg-gray-dark shadow-lg shadow-black-dark"
-              src={tech.img}
-              width={100}
-              height={100}
-              alt={`foto de ${tech.name}`}
-            />
+            className="p-4 rounded-2xl bg-gray-dark shadow-lg shadow-black-dark"
+            src={tech.img}
+            width={100}
+            height={100}
+            alt={`foto de ${tech.name}`}
+          />
           <h1 className="text-2xl">{tech.name}</h1>
           <div className="flex gap-2 px-1 overflow-x-auto">
-            {
-              tech.tags?.map((tag, index) => (
-                <span key={index} className="bg-gray-dark px-2 my-1 rounded-md whitespace-nowrap">{tag}</span>
-              ))
-            }
+            {tech.tags?.map((tag, index) => (
+              <span
+                key={index}
+                className="bg-gray-dark px-2 my-1 rounded-md whitespace-nowrap"
+              >
+                {tag}
+              </span>
+            ))}
           </div>
           <div className="flex gap-5 items-center">
-            <Share message={`Venha entender um pouco mais sobre o ${tech.name}`} />
-            {
-              tech.github && (
-                <Link className="text-2xl link" href={tech.github} target="_blank">
-                  <FiGithub />
-                </Link>
-              )
-            }
-            {
-              tech.site && (
-                <Link className="text-2xl link" href={tech.site} target="_blank">
-                  <FiLink2 />
-                </Link>
-              )
-            }
+            <Share
+              message={`Venha entender um pouco mais sobre o ${tech.name}`}
+            />
+            {tech.github && (
+              <Link
+                className="text-2xl link"
+                href={tech.github}
+                target="_blank"
+                aria-label="Ir para o repositório do GitHub"
+              >
+                <FiGithub />
+              </Link>
+            )}
+            {tech.site && (
+              <Link
+                className="text-2xl link"
+                href={tech.site}
+                target="_blank"
+                aria-label="Ir para a demo do projeto"
+              >
+                <FiLink2 />
+              </Link>
+            )}
           </div>
           <p className="basis-full text-justify">{tech.description}</p>
         </main>
@@ -84,7 +96,6 @@ export default function Projects({ errorCode, tech }: props) {
         </section> */}
         <Footer />
       </>
-    )
-  if(errorCode)
-    return <ErrorNotFound />
+    );
+  if (errorCode) return <ErrorNotFound />;
 }

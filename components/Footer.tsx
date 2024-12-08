@@ -15,6 +15,7 @@ export default function Footer() {
           className="link course_circle"
           href="https://github.com/miguel-l-b"
           target="_blank"
+          aria-label="Ir para GitHub"
         >
           <FiGithub />
         </Link>
@@ -22,6 +23,7 @@ export default function Footer() {
           className="link course_circle"
           href="https://www.linkedin.com/in/miguel-lb/"
           target="_blank"
+          aria-label="Ir para LinkedIn"
         >
           <FiLinkedin />
         </Link>
@@ -29,6 +31,7 @@ export default function Footer() {
           className="link course_circle"
           href="mailto:miguellopesbraido@gmail.com"
           target="_blank"
+          aria-label="Enviar um e-mail"
         >
           <FiMail />
         </Link>

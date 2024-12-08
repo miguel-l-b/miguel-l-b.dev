@@ -13,6 +13,7 @@ import Share from "@/components/Share";
 
 export default function Home() {
   const router = useRouter();
+  const router = useRouter();
 
   return (
     <>
@@ -24,31 +25,23 @@ export default function Home() {
         />
       </Head>
       <Header path="/" />
-      <main id="d" className="text-center mt-20">
+      <main className="text-center mt-20">
         <Image
           className="w-52 h-52 m-auto"
           src="/img/logo-ellipse.svg"
           width={208}
           height={208}
           alt="logo tipo"
+          loading="eager"
         />
         <br />
         <h1>
           Olá 🖖, eu sou{" "}
           <Roller
             values={[
-              {
-                text: "Miguel Lopes Braido",
-                style: "bg-green text-xl",
-              },
-              {
-                text: "Desenvolvedor de Software",
-                style: "bg-blue text-xl",
-              },
-              {
-                text: "Desenvolvedor FullStack",
-                style: "bg-yellow text-xl",
-              },
+              { text: "Miguel Lopes Braido", style: "bg-green text-xl" },
+              { text: "Desenvolvedor de Software", style: "bg-blue text-xl" },
+              { text: "Desenvolvedor FullStack", style: "bg-yellow text-xl" },
             ]}
           />
         </h1>
@@ -68,17 +61,18 @@ export default function Home() {
         <h1>
           🎓 Cursando Desenvolvimento de Sistemas pelo{" "}
           <Link
-            className="animated-link course_block"
+            className="animated-link"
             href="https://cotuca.unicamp.br/"
             target="_blank"
+            aria-label="COTUCA - Unicamp"
           >
             COTUCA - Unicamp
           </Link>
         </h1>
         <h1>🧐 Estou de olho no Deno e Bun</h1>
         <h1>🚀 Buscando oportunidade de estágio</h1>
-        <Link href="#timeline" className="">
-          <FiChevronsDown className="m-auto mt-20 text-5xl animate-bounce course_block" />
+        <Link href="#timeline" aria-label="Ir para TimeLine">
+          <FiChevronsDown className="m-auto mt-20 text-5xl animate-bounce" />
         </Link>
       </main>
       <section
@@ -86,13 +80,19 @@ export default function Home() {
         className="flex flex-col justify-center items-center gap-20 mt-40 w-full min-h-screen bg-black-dark"
       >
         <h1 className="text-2xl text-center mt-10 basis-full">
-          <Link href="#techs">Tecnologias que utilizo e estudo</Link>
+          <Link href="#techs" aria-label="Ir para Tecnologias">
+            Tecnologias que utilizo e estudo
+          </Link>
         </h1>
         <Techs />
         <p>
-          <Link className="course_block" href="/techs">
-            <FiLink2 className="inline-block" />{" "}
-            <span className="animated-link w-full text-xl">ver mais</span>
+          <FiLink2 className="inline-block" />{" "}
+          <Link
+            className="animated-link w-full text-xl"
+            href="/techs"
+            aria-label="Ver mais sobre as tecnologias"
+          >
+            ver mais
           </Link>
         </p>
       </section>
@@ -101,7 +101,9 @@ export default function Home() {
         className="flex flex-col justify-center py-20 min-h-[50dvh] rounded-md"
       >
         <h1 className="text-center text-2xl font-orbitron font-extrabold text-gray-light mb-10">
-          <Link href="#timeline">Linha do Tempo</Link>
+          <Link href="#timeline" aria-label="Ir para TimeLine">
+            Linha do Tempo
+          </Link>
         </h1>
         <TimeLine.root />
       </section>
