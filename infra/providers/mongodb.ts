@@ -1,6 +1,5 @@
 import mongoose from "mongoose"
 
-
 let logged = false
 
 async function handleConnection() {
@@ -17,7 +16,7 @@ async function handleConnection() {
 }
 
 export default function connectionMongo() {
-  // if (!logged)
-  handleConnection()
+  if (!logged)
+    handleConnection()
   return mongoose
 }
